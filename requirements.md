@@ -41,6 +41,6 @@ they want to search by, and choose values to search by those criteria. From the 
 
 ###Non-Functional Requirements
 
-Security: User information should be encrypted other than their usernme. We'll use a password encoder to ensure that private data is not visible to the public.
+###Security: User information should be encrypted other than their usernme. We'll use a password encoder to ensure that private data is not visible to the public.
 Testability: 
 

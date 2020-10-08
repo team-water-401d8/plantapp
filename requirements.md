@@ -22,10 +22,10 @@ The web app will scale to function on mobile and tablet devices, but will not be
 The app will not be able to add plants from outside of the Trefle API -- no user created or identified plants.
 
 ### MVP
-Creating an account/profile, querying the API for plants, and saving plants to user profiles.
+Creating an account/profile, querying the API for plants, and saving plants to user profiles. Users will be able to "like" and "follow" plants and users, respectively.
 
 ### Stretch Goals
-Social functionality. We'd like users to be able to share their gardens with one another, and to interact and "Like" other gardens.
+Deeper social functionality.
 Multiple gardens per user --  front yard, back yard, etc.
 
 ### Functional Requirements

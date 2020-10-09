@@ -7,3 +7,13 @@ Our app will allow users to create a profile and login and search through Trefle
 
 ### Database Entity Relationship Diagram
 ![diagram](images/erd.png)
+
+### WireFrames
+![WireFrame](images/mobileLand.PNG)
+![WireFrame](images/mobileSearch.PNG)
+![WireFrame](images/mobileProfile.PNG)
+![WireFrame](images/mobileAbout.PNG)
+![WireFrame](images/webHome.PNG)
+![WireFrame](images/web-Search.PNG)
+![WireFrame](images/webProfile.PNG)
+![WireFrame](images/About.PNG)

@@ -4,7 +4,7 @@ Our app will allow users to create a profile and login and search through Trefle
 
 ### Project Management & Links
 [Project Management](https://app.asana.com/0/1197955738846561/board)<br>
-[User Stories](https://docs.google.com/document/d/1r2FX1yhjJili-VBtMclsN3bT2iUgR8pamwG2LzfLuNg/edit?usp=sharing)<br>
+[User Stories / Software Requirements](https://docs.google.com/document/d/1r2FX1yhjJili-VBtMclsN3bT2iUgR8pamwG2LzfLuNg/edit?usp=sharing)<br>
 
 ### Domain Model
 ![domainModel](images/model.png)

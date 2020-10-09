@@ -9,11 +9,19 @@ Our app will allow users to create a profile and login and search through Trefle
 ![diagram](images/erd.png)
 
 ### WireFrames
+-Mobile Landing Page
 ![WireFrame](images/mobileLand.PNG)
+-Mobile search
 ![WireFrame](images/mobileSearch.PNG)
-![WireFrame](images/mobileProfile.PNG)
+- Mobile Profile
+![WireFrame](images/mobileProfile.PNG)\
+- Mobile About us
 ![WireFrame](images/mobileAbout.PNG)
+- Web home 
 ![WireFrame](images/webHome.PNG)
+- Web search
 ![WireFrame](images/web-Search.PNG)
+- Web profile
 ![WireFrame](images/webProfile.PNG)
-![WireFrame](images/About.PNG)
+- Web about
+![WireFrame](images/webAbout.PNG)

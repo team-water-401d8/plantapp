@@ -10,8 +10,7 @@ import java.security.Principal;
 public class HomeController {
 
     @GetMapping("/")
-    public String homePage(Principal principal, Model m){
-        m.addAttribute("user", principal);
+    public String homePage(){
         return "home";
     }
 }

@@ -21,10 +21,15 @@ public class AppUserController {
     AppUserRepository AppUserRepository;
 
     @Autowired
-    protected AuthenticationManager authenticationManager;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
+
+//    --- login route ---
+    @GetMapping("login")
+    public String showLoginPage(Principal principal, Model m){
+        System.out.println("----------- login route ----------");
+        m.addAttribute("user",principal);
+        return ("login");
+    }
 
 
 //    --- sign up routes ---
@@ -43,7 +48,6 @@ public class AppUserController {
 
         request.login(username,password);
         return new RedirectView("/profile");
-
     }
 
 //    --- profile route ---
@@ -52,6 +56,5 @@ public class AppUserController {
         System.out.println("------------ profile route -------------");
         m.addAttribute("user",principal);
         return ("profile");
-
     }
 }

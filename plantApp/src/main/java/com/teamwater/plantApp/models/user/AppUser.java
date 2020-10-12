@@ -1,14 +1,13 @@
 package com.teamwater.plantApp.models.user;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
+@Table (uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
 public class AppUser implements UserDetails {
 
     @Id
@@ -43,7 +42,6 @@ public class AppUser implements UserDetails {
 
 
 //    --- getters & setters ---
-
     public long getId() {
         return id;
     }

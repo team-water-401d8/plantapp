@@ -23,6 +23,12 @@ public class AppUserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @GetMapping("/user")
+    public String showProfilePage(Principal principal, Model m){
+        m.addAttribute("user",principal);
+        return "profile";
+    }
+
     @GetMapping("/user/{username}")
     public String showUserDetails(@PathVariable String username, Model userinfo, Principal principal) {
         AppUser user = AppUserRepository.findByUsername(username);
@@ -77,6 +83,8 @@ public class AppUserController {
         m.addAttribute("principal", principal);
         return "search";
     }
+
+//    ---- login routes ----
     @GetMapping("/login")
     public String showLoginPage(Principal principal, Model m){
         System.out.println("----------- login route ----------");
@@ -90,6 +98,8 @@ public class AppUserController {
         
         return new RedirectView("/user/" + username);
     }
+
+//    ---- signup routes ----
     @GetMapping("/signup")
     public String signUpNewUser(Principal principal, Model m) {
         return "signup";
@@ -108,12 +118,4 @@ public class AppUserController {
         request.login(username,password);
         return new RedirectView("/user/" + username);
     }
-
-//    @GetMapping("/profile")
-//    public String profilePage(Principal principal, Model m){
-//        System.out.println("------------ profile route -------------");
-//        m.addAttribute("user", user);
-//        m.addAttribute("principal", principal);
-//        return "profile";
-//    }
 }

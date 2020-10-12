@@ -28,10 +28,10 @@ public class AppUserController {
 
 
 //    --- sign up routes ---
-    @GetMapping("signup")
+    @GetMapping("/signup")
     public String signUpNewUser(Principal principal, Model m) {return ("signup");}
 
-    @PostMapping("signup")
+    @PostMapping("/signup")
     public RedirectView makeNewUser(HttpServletRequest request,
                                     String username,
                                     String password) throws Exception {
@@ -43,6 +43,15 @@ public class AppUserController {
 
         request.login(username,password);
         return new RedirectView("/profile");
+
+    }
+
+//    --- profile route ---
+    @GetMapping("/profile")
+    public String profilePage(Principal principal, Model m){
+        System.out.println("------------ profile route -------------");
+        m.addAttribute("user",principal);
+        return ("profile");
 
     }
 }

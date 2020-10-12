@@ -33,6 +33,3 @@ out/
 
 ### VS Code ###
 .vscode/
-
-### Custom ###
-*.properties

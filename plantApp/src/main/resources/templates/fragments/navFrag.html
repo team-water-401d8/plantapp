@@ -6,5 +6,18 @@
 </head>
 <body>
 
+<nav th:fragment="nav">
+    <ul th:if="${user == null}"><a href="/signup"><li>Sign up</li></a></ul>
+    <ul th:if="${user == null}"><a href="/login"><li>Login</li></a></ul>
+
+    <ul><a href="/"><li>Home</li></a></ul>
+    <ul><a href="/search"><li>Search</li></a></ul>
+    <ul><a href="/profile"><li>Profile</li></a></ul>
+    <ul><a href="/about"><li>About Us</li></a></ul>
+
+    <ul th:if="${user}"><a href="/logout"><li>Logout</li></a></ul>
+
+</nav>
+
 </body>
 </html>

@@ -18,9 +18,9 @@ public class AppUser implements UserDetails {
 
     private String username;
     private String password;
-    private String firstName;
-    private String lastName;
-    private String bio;
+//    private String firstName;
+//    private String lastName;
+//    private String bio;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -35,12 +35,12 @@ public class AppUser implements UserDetails {
 
     public AppUser(){}
 
-    public AppUser(String username, String password, String firstName, String lastName, String bio) {
+    public AppUser(String username, String password) {
         this.username = username;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.bio = bio;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.bio = bio;
     }
 
 //    --- follow methods ---
@@ -58,7 +58,20 @@ public class AppUser implements UserDetails {
     public void getFollower(AppUser follower) {
         followers.add(follower);
     }
+    public Set<AppUser> getFollowing() {
+        return following;
+    }
+    public void setFollowing(Set<AppUser> following) {
+        this.following = following;
+    }
 
+    public void setFollowers(Set<AppUser> followers) {
+        this.followers = followers;
+    }
+
+    public Set<AppUser> getFollowers() {
+        return followers;
+    }
 
 //    --- getters & setters ---
     public long getId() {

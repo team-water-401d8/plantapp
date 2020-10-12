@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head th:replace="fragments/headFrag :: head"></head>
-<<<<<<< HEAD
 <nav th:replace="fragments/navFrag :: nav"></nav>
+
 <body>
 <h1>Welcome to you profile</h1>
 
@@ -10,9 +10,9 @@
 
 <!--User personal information displayed-->
 <section th:if="${user}" th:each="user : ${user}">
-    <p th:text="${user.firstName}"></p>
-    <p th:text="${user.lastName}"></p>
-    <p th:text="${user.bio}"></p>
+<!--    <p th:text="${user.firstName}"></p>-->
+<!--    <p th:text="${user.lastName}"></p>-->
+<!--    <p th:text="${user.bio}"></p>-->
 </section >
 
 
@@ -30,15 +30,15 @@
 
 
 <!--Follow and unfollow form-->
-<form th:if="${user.getUsername()} != ${principal.getName()} " action="/follow" method="POST">
-    <input type="hidden" name="id" th:value="${user.id}">
-    <input type="submit" th:value="'Follow ' + ${user.getUsername()}">
-</form>
+    <form th:if="${user.getUsername()} != ${principal.getName()} " action="/follow" method="POST">
+        <input type="hidden" name="id" th:value="${user.id}">
+        <input type="submit" th:value="'Follow ' + ${user.getUsername()}">
+    </form>
 
-<form th:if="${user.getUsername()} != ${principal.getName()} " action="/unfollow" method="POST">
-    <input type="hidden" name="id" th:value="${user.getId()}">
-    <input type="submit" th:value="'Stop following ' + ${user.getUsername()}">
-</form>
+    <form th:if="${user.getUsername()} != ${principal.getName()} " action="/unfollow" method="POST">
+        <input type="hidden" name="id" th:value="${user.getId()}">
+        <input type="submit" th:value="'Stop following ' + ${user.getUsername()}">
+    </form>
 
 
 
@@ -54,11 +54,6 @@
     <p>Following: </p><a th:href="'/user/' + ${follow.getUsername()}" th:text="${follow.getUsername()}"></a>
 </div>
 
-
-=======
-    <body>
-    <h1>Profile Page</h1>
->>>>>>> b5fce7e52dafa713d411734e5169f878360a232c
 
     <footer th:replace="fragments/footerFrag :: footer"></footer>
     </body>

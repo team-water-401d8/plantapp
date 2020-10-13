@@ -30,6 +30,7 @@ public class Garden {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Plant> plantsInGarden = new HashSet<>();
 
+
 //    --- add plant methods ---
     public void addPlant(Plant plant) {plantsInGarden.add(plant);}
     public void removePlant(Plant plant) {plantsInGarden.remove(plant);}

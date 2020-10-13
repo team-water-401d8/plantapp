@@ -6,6 +6,47 @@
 
     <h1>Plant Stuff here</h1>
 
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="images/sproutling.jpg" alt="Image">
+                <div class="carousel-caption">
+                    <h3>Add some green to your day!</h3>
+                    <p>Gardening done right</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="images/planthand.jpeg" alt="Image">
+                <div class="carousel-caption">
+                    <h3>Idk what goes here?</h3>
+                    <p>Lorem ipsum...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <div class="container text-center">
+        <h3>Plant of the day!</h3><br>
+    </div><br>
+
     <footer th:replace="fragments/footerFrag :: footer"></footer>
     </body>
 </html>

@@ -88,5 +88,3 @@ public class SearchController {
        public Plant[] plantDto;
     }
 }
-
-

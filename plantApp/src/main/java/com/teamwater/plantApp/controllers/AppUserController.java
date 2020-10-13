@@ -22,40 +22,29 @@ public class AppUserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
     //================================= follow + unfollow =============================================================
     @PostMapping("/follow")
     public RedirectView followUser(Principal principal, Long id) {
         AppUser userToFollow = AppUserRepository.getOne(id);
         AppUser follower = AppUserRepository.findByUsername(principal.getName());
-
         userToFollow.getFollower(follower);
         follower.follow(userToFollow);
-
         AppUserRepository.save(userToFollow);
         AppUserRepository.save(follower);
-
         System.out.println("following a new user!" + userToFollow.getUsername());
-
         return new RedirectView("/user/" + userToFollow.getUsername());
     }
-
     @PostMapping("/unfollow")
     public RedirectView unfollowUser(Principal principal, Long id) {
         AppUser userToUnfollow = AppUserRepository.getOne(id);
         AppUser follower = AppUserRepository.findByUsername(principal.getName());
-
         userToUnfollow.removeFollower(follower);
         follower.removeFollow(userToUnfollow);
-
         AppUserRepository.save(userToUnfollow);
         AppUserRepository.save(follower);
-
         System.out.println("You unfollowed a user!" + userToUnfollow.getUsername());
-
         return new RedirectView("/user/" + userToUnfollow.getUsername());
     }
-
     //==================================== about us ============================================================
     @GetMapping("/about")
     public String renderAbout(Principal principal, Model m) {
@@ -63,12 +52,13 @@ public class AppUserController {
         return "about";
     }
     //=================================== search ================================================================
-//    @GetMapping("/search")
-//    public String renderSearch(Principal principal, Model m) {
-//        m.addAttribute("user", principal);
-//        return "search";
-//    }
 
+    @GetMapping("/search")
+    public String renderSearch(Principal principal, Model m) {
+        m.addAttribute("user", principal);
+        return "search";
+    }
+  
     //==================================== Login =================================================================
     @GetMapping("/login")
     public String showLoginPage(Principal principal, Model m){
@@ -80,10 +70,8 @@ public class AppUserController {
     public RedirectView renderLogin(Principal principal, Model m, String username, String password){
         System.out.println("----------- login route ----------");
         m.addAttribute("user", principal);
-
         return new RedirectView("/profile");
     }
-
     //========================================== Sign up =====================================
     @GetMapping("/signup")
     public String signUpNewUser(Principal principal, Model m) {
@@ -93,17 +81,14 @@ public class AppUserController {
     public RedirectView makeNewUser(HttpServletRequest request,
                                     String username,
                                     String password
-                                    ) throws Exception {
+    ) throws Exception {
         System.out.println("----------- adding a user to the DB ----------");
-
         String passwordEncode = passwordEncoder.encode(password);
         AppUser newUser = new AppUser(username, passwordEncode);
         AppUserRepository.save(newUser);
-
         request.login(username,password);
         return new RedirectView("/user/" + username);
     }
-
     //============================= user profile ===================================================================
     @GetMapping("/user/{username}")
     public String showUserDetails(@PathVariable String username, Model userinfo, Principal principal) {

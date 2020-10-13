@@ -10,6 +10,7 @@
 
 <!--User personal information displayed-->
 <section th:if="${user}" th:each="user : ${user}">
+    <h1 th:text="${user.getUsername()}"></h1>
 <!--    <p th:text="${user.firstName}"></p>-->
 <!--    <p th:text="${user.lastName}"></p>-->
 <!--    <p th:text="${user.bio}"></p>-->
@@ -19,6 +20,7 @@
 
 <!--TODO: Allow the user to modify their information + add avatar/image-->
 <form>
+    <fieldset>Select an avatar</fieldset>
     <select name="avatar" id="avatarList">
         <option value="1">one</option>
         <option value="2">two</option>
@@ -26,7 +28,12 @@
     </select>
     <input type="submit" value="submit">
 </form>
-
+<!--<form action="/signup" method="POST">-->
+<!--    <input type="text" th:value="name">-->
+<!--    <input type="hidden" th:value="${user.getUsername}">-->
+<!--    <input type="hidden" th:value="${user.getPassword}">-->
+<!--    <input type="submit" value="change name">-->
+<!--</form>-->
 
 
 <!--Follow and unfollow form-->

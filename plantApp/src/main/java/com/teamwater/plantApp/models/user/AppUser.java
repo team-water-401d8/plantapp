@@ -3,7 +3,6 @@ package com.teamwater.plantApp.models.user;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -20,7 +19,7 @@ public class AppUser implements UserDetails {
 
     private String username;
     private String password;
-//    private String firstName;
+    private String firstName;
 //    private String lastName;
 //    private String bio;
 
@@ -125,4 +124,5 @@ public class AppUser implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

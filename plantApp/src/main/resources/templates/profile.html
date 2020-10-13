@@ -30,7 +30,7 @@
 
 
 <!--Follow and unfollow form-->
-    <form th:if="${user.getUsername()} != ${principal.getName()} " action="/follow" method="POST">
+    <form th:if="${user.getUsername()} != ${principal.getName()}" action="/follow" method="POST">
         <input type="hidden" name="id" th:value="${user.id}">
         <input type="submit" th:value="'Follow ' + ${user.getUsername()}">
     </form>

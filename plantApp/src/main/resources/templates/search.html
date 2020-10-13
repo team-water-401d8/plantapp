@@ -14,10 +14,15 @@
 <!--    <input type="submit" name="search">-->
 <!--</form>-->
 
+<input name="searchBar" type="text">
+<button type="submit">Search</button>
 
-<ul>
-    <li th:each = "plant:${plants}" th:text="${plant.name}"></li>
-</ul>
+<ol>
+    <li th:each = "plant : ${plants}">
+        <h2 th:text="${plant.common_name}"></h2>
+        <img th:src="${plant.image_url}" alt="" style="max-height: 200px">
+    </li>
+</ol>
 <footer th:replace="fragments/footerFrag :: footer"></footer>
 </body>
 </html>

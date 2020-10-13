@@ -52,7 +52,7 @@ public class AppUserController {
         m.addAttribute("user", principal);
         return "about";
     }
-  
+
     //==================================== Login =================================================================
     @GetMapping("/login")
     public String showLoginPage(Principal principal, Model m){

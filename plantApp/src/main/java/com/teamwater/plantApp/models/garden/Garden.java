@@ -14,10 +14,7 @@ public class Garden {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
-
     private String gardenName;
-
-
 
     public Garden(){}
 
@@ -27,17 +24,16 @@ public class Garden {
 
 
 //    --- Garden / User Table RelationShip ---
-    @ManyToOne
-    AppUser user;    // user should be able to have multiple gardens
+    @ManyToOne AppUser user;    // user should be able to have multiple gardens
 
 
 //    --- Garden / Plant Table RelationShip ---
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<Plant> gardenPlants = new HashSet<>();
+    private Set<Plant> plantsInGarden = new HashSet<>();
 
 //    --- add plant methods ---
-    public void addPlant(Plant plant) {gardenPlants.add(plant);}
-    public void removePlant(Plant plant) {gardenPlants.remove(plant);}
+    public void addPlant(Plant plant) {plantsInGarden.add(plant);}
+    public void removePlant(Plant plant) {plantsInGarden.remove(plant);}
 
 
 //    --- getters & setters ---

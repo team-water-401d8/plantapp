@@ -37,7 +37,7 @@ public class AppUser implements UserDetails {
 
 //    --- Garden Table Relationship
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Garden> userGardens = new HashSet<>();
+    private Set<Garden> userGarden = new HashSet<>();
 
 
 //    --- constructors ---
@@ -50,8 +50,8 @@ public class AppUser implements UserDetails {
 
 
 //    --- garden methods ---
-    public void addGarden(Garden garden) {userGardens.add(garden);}
-    public void removeGarden(Garden garden) {userGardens.remove(garden);}
+    public void addGarden(Garden garden) {userGarden.add(garden);}
+    public void removeGarden(Garden garden) {userGarden.remove(garden);}
 
 
 //    --- follow methods ---

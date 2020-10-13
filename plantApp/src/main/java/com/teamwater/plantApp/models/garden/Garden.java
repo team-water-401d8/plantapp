@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table (name="GARDENS")
 public class Garden {
 
     @Id

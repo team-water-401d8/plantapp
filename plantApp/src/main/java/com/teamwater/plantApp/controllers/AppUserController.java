@@ -92,7 +92,8 @@ public class AppUserController {
     @PostMapping("/signup")
     public RedirectView makeNewUser(HttpServletRequest request,
                                     String username,
-                                    String password) throws Exception {
+                                    String password
+                                    ) throws Exception {
         System.out.println("----------- adding a user to the DB ----------");
 
         String passwordEncode = passwordEncoder.encode(password);

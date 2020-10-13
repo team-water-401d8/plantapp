@@ -1,14 +1,15 @@
 package com.teamwater.plantApp.models.user;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Table (uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
 public class AppUser implements UserDetails {
 
     @Id
@@ -17,33 +18,62 @@ public class AppUser implements UserDetails {
 
     private String username;
     private String password;
+    private String firstName;
+//    private String lastName;
+//    private String bio;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "follows",
+            joinColumns = { @JoinColumn(name = "follower")},
+            inverseJoinColumns = {@JoinColumn(name = "following")}
+    )
+    Set<AppUser> following = new HashSet<>();
+
+    @ManyToMany(mappedBy = "following")
+    Set<AppUser> followers = new HashSet<>();
 
     public AppUser(){}
 
     public AppUser(String username, String password) {
         this.username = username;
         this.password = password;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.bio = bio;
     }
 
 //    --- follow methods ---
-//    public void removeFollower(ApplicationUser follower) {
-//        followers.remove(follower);
-//    }
-//
-//    public void removeFollow(ApplicationUser userToUnfollow) {
-//        following.remove(userToUnfollow);
-//    }
+    public void removeFollower(AppUser follower) {
+        followers.remove(follower);
+    }
 
-//    public void follow(ApplicationUser userToFollow) {
-//        following.add(userToFollow);
-//    }
-//    public void getFollower(ApplicationUser follower) {
-//        followers.add(follower);
-//    }
+    public void removeFollow(AppUser userToUnfollow) {
+        following.remove(userToUnfollow);
+    }
 
+    public void follow(AppUser userToFollow) {
+        following.add(userToFollow);
+    }
+    public void getFollower(AppUser follower) {
+        followers.add(follower);
+    }
+    public Set<AppUser> getFollowing() {
+        return following;
+    }
+    public void setFollowing(Set<AppUser> following) {
+        this.following = following;
+    }
+
+    public void setFollowers(Set<AppUser> followers) {
+        this.followers = followers;
+    }
+
+    public Set<AppUser> getFollowers() {
+        return followers;
+    }
 
 //    --- getters & setters ---
-
     public long getId() {
         return id;
     }
@@ -93,4 +123,5 @@ public class AppUser implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

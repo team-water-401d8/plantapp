@@ -1,7 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head th:replace="fragments/headFrag :: head"></head>
+<nav th:replace="fragments/navFrag :: nav"></nav>
 <body>
+<h1>Welcome to the search page</h1>
+
+<!--Relies on api to grab plants-->
+
+<!--<form action="/searchPlant" method="POST">-->
+<!--    <input type="text" name="nameOfPlant">-->
+<!--    <input type="radio" name="color">-->
+<!--    <input type="radio" name="edible">-->
+<!--    <input type="submit" name="search">-->
+<!--</form>-->
+
+
 <ul>
     <li th:each = "plant:${plants}" th:text="${plant.name}"></li>
 </ul>

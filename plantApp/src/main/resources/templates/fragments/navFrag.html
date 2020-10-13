@@ -6,5 +6,33 @@
 </head>
 <body>
 
+<nav th:fragment="nav">
+    <ul th:if="${user} == null"><a href="/signup"><li>Sign up</li></a></ul>
+    <ul th:if="${user} == null"><a href="/login"><li>Login</li></a></ul>
+
+    <ul><a href="/"><li>Home</li></a></ul>
+    <ul><a href="/search"><li>Search</li></a></ul>
+    <ul><a href="/profile"><li>Profile</li></a></ul>
+    <ul><a href="/about"><li>About Us</li></a></ul>
+
+    <ul th:if="${user} != null"><a href="/logout"><li>Logout</li></a></ul>
+
+<!--    <nav th:fragment="nav" class="navbar navbar-dark bg-dark">-->
+<!--            <div class="navbar-nav">-->
+<!--                <a th:if="${user} == null" class="nav-item nav-link" href="/signup">Sign-up</a>-->
+<!--                <a th:if="${user} == null" class="nav-item nav-link" href="/login">Login</a>-->
+
+<!--                <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>-->
+<!--                <a th:if="${user} != null" class="nav-item nav-link" href="/profile">Profile</a>-->
+<!--                <a class="nav-item nav-link" href="/search">Search</a>-->
+<!--                <a class="nav-item nav-link" href="/about">About Us</a>-->
+
+<!--                <a th:if="${user} != null" class="nav-item nav-link" href="/logout">Logout</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </nav>-->
+
+</nav>
+
 </body>
 </html>

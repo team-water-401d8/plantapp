@@ -2,7 +2,9 @@
 <html lang="en">
 <head th:replace="fragments/headFrag :: head"></head>
 <body>
-
+<ul>
+    <li th:each = "plant:${plants}" th:text="${plant.name}"></li>
+</ul>
 <footer th:replace="fragments/footerFrag :: footer"></footer>
 </body>
 </html>

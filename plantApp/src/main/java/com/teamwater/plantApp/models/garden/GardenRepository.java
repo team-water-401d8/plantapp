@@ -1,5 +1,7 @@
 package com.teamwater.plantApp.models.garden;
 
 
-public interface GardenRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface GardenRepository extends JpaRepository <Garden, Long> {
 }

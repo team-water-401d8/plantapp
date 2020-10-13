@@ -51,14 +51,7 @@ public class AppUserController {
         m.addAttribute("user", principal);
         return "about";
     }
-    //=================================== search ================================================================
 
-    @GetMapping("/search")
-    public String renderSearch(Principal principal, Model m) {
-        m.addAttribute("user", principal);
-        return "search";
-    }
-  
     //==================================== Login =================================================================
     @GetMapping("/login")
     public String showLoginPage(Principal principal, Model m){

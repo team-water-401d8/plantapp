@@ -7,32 +7,27 @@
 <body>
 
 <nav th:fragment="nav">
-    <ul th:if="${user} == null"><a href="/signup"><li>Sign up</li></a></ul>
-    <ul th:if="${user} == null"><a href="/login"><li>Login</li></a></ul>
+<!--    color can be added or changed within the initial nav class     -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" >PlantsRus</a>
+            </div>
+            <ul class="nav navbar-nav">
 
-    <ul><a href="/"><li>Home</li></a></ul>
-    <ul><a href="/search"><li>Search</li></a></ul>
-    <ul><a href="/profile"><li>Profile</li></a></ul>
-    <ul><a href="/about"><li>About Us</li></a></ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/search">Search</a></li>
+                <li th:if="${user} != null"><a href="/profile">Profile</a></li>
+                <li><a href="/about">About Us</a></li>
 
-    <ul th:if="${user} != null"><a href="/logout"><li>Logout</li></a></ul>
-
-<!--    <nav th:fragment="nav" class="navbar navbar-dark bg-dark">-->
-<!--            <div class="navbar-nav">-->
-<!--                <a th:if="${user} == null" class="nav-item nav-link" href="/signup">Sign-up</a>-->
-<!--                <a th:if="${user} == null" class="nav-item nav-link" href="/login">Login</a>-->
-
-<!--                <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>-->
-<!--                <a th:if="${user} != null" class="nav-item nav-link" href="/profile">Profile</a>-->
-<!--                <a class="nav-item nav-link" href="/search">Search</a>-->
-<!--                <a class="nav-item nav-link" href="/about">About Us</a>-->
-
-<!--                <a th:if="${user} != null" class="nav-item nav-link" href="/logout">Logout</a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </nav>-->
-
-</nav>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li th:if="${user} == null"><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li th:if="${user} == null"><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li th:if="${user} != null"><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
 
 </body>
 </html>

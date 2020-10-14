@@ -4,13 +4,15 @@
 
 <body>
     <nav th:replace="fragments/navFrag :: nav"></nav>
-    <h1>Welcome to the search page</h1>
 
-    <input id="searchBar" type="text">
-    <button id="searchButton" type="submit">Search</button>
-
-
-
+    <div class="jumbotron">
+        <h1 class="display-4">Search for Greenery!</h1>
+        <p class="lead">Search for a plant to add to your garden</p>
+        <input id="searchBar" type="text">
+        <hr class="mr-4">
+        <button id="searchButton" type="submit" class="btn btn-primary btn-lg" role="button">Search</button>
+    </div>
+    
 <!--    We should create a button or something, where when someone adds a plant, they are notified it has been added-->
 <!--         Adding plants should utilize a dropdown menu to select which garden to save it to            -->
     <ol>

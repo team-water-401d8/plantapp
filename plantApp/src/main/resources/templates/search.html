@@ -21,12 +21,11 @@
 
     <ol>
         <li th:each = "plant : ${plants}">
-            <form class="addPlant">
+            <form class="addPlant" th:id="${plant.id}">
+
                 <h2 th:text="${plant.common_name}"></h2>
                 <img th:src="${plant.image_url}" alt="" style="max-height: 200px">
-
-                <input class="common_name" type="hidden" th:value="${plant.common_name}" th:name="common_name">
-                <input class="image_url" type="hidden" th:value="${plant.image_url}" th:name="image_url">
+                
                 <input type="submit" value="add">
             </form>
         </li>

@@ -7,16 +7,16 @@ $("#searchButton").click(function() {
 });
 
 $(".addPlant").on("submit",function(event){
-    event.preventDefault();
+    event.preventDefault();                     // prevent page reload
+    console.log(event.target.id);
 
-    $.post("/addPlantToGarden",
+    $.post("/addPlantToGarden",                 // post data to /addPlantToGarden
         {
-            common_name: $(".common_name").attr("value"),
-            image_url: $(".image_url").attr("value")
+            common_name: $(this).children("h2").text(),
+            image_url: $(this).children("img").attr("src")
         }
     );
 
-   // jQuery post request goes to route
-   // do all the things
-    console.log("----- prevent reload ------")
+    console.log( $(this).children("h2").text() );
+    console.log( $(this).children("img").attr("src") );
 });

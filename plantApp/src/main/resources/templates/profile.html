@@ -8,6 +8,7 @@
         <!--User personal information displayed-->
         <section th:if="${user}" th:each="user : ${user}">
             <h1 th:text="${user.getUsername()}" class="display-3"></h1>
+            <p class="lead">User Profile</p>
             <hr class="my-4">
             <!--    <p th:text="${user.firstName}"></p>-->
             <!--    <p th:text="${user.lastName}"></p>-->

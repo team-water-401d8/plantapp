@@ -31,10 +31,6 @@ public class PlantController {
         System.out.println(common_name);
         System.out.println(image_url);
 
-        Plant plant = new Plant(common_name,image_url);
-        System.out.println(plant);
-        plantRepository.save(plant);
-
         System.out.println("------ added PLANT TO DB ------");
     }
 

@@ -1,6 +1,8 @@
 package com.teamwater.plantApp.controllers;
 
 import com.nimbusds.oauth2.sdk.http.HTTPRequest;
+import com.teamwater.plantApp.models.garden.Garden;
+import com.teamwater.plantApp.models.plant.Plant;
 import com.teamwater.plantApp.models.plant.PlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -24,13 +26,16 @@ public class PlantController {
     @PostMapping("/addPlantToGarden")
     @ResponseStatus(value= HttpStatus.OK)
     public void addPlantToGarden(@RequestParam(value="common_name")String common_name,
-                                         @RequestParam(value="image_url")String image_url){
+                                 @RequestParam(value="image_url")String image_url){
 
         System.out.println(common_name);
         System.out.println(image_url);
 
-        System.out.println("------ added PLANT TO DB ------");
+        Plant plant = new Plant(common_name,image_url);
+        System.out.println(plant);
+        plantRepository.save(plant);
 
+        System.out.println("------ added PLANT TO DB ------");
     }
 
 }

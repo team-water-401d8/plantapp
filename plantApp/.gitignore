@@ -23,6 +23,7 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 *.properties
+.DS_Store
 
 ### NetBeans ###
 /nbproject/private/

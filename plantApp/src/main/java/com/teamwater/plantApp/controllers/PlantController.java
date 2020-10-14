@@ -1,12 +1,6 @@
 package com.teamwater.plantApp.controllers;
 
-import com.nimbusds.oauth2.sdk.http.HTTPRequest;
-<<<<<<< HEAD
-import com.teamwater.plantApp.models.garden.Garden;
-import com.teamwater.plantApp.models.plant.Plant;
-=======
 import com.teamwater.plantApp.models.garden.GardenRepository;
->>>>>>> 4e87aa583f3b3924f6e151cc9d6db0f9924ee0b9
 import com.teamwater.plantApp.models.plant.PlantRepository;
 import com.teamwater.plantApp.models.user.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

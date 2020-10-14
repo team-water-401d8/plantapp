@@ -61,12 +61,14 @@ public class SearchController {
         String apiUrl = "https://trefle.io/api/v1/plants/search?token=" + System.getenv("TREFLE_API_KEY") + "&filter_not[common_name]";
         if (q != null){
             apiUrl += "&q=" + q;
+            System.out.println(q);
         }
         if (page != null) { // Address the offset of numbers per page (have gotten ranging values from 18 to 20)
             apiUrl += "&page=" + page;
         }
         PlantDTO[] capturedPlants;
         System.out.println(apiUrl);
+        apiUrl = apiUrl.replace(" ", "%20");
 
         try {
             capturedPlants = callApi(apiUrl);

@@ -12,15 +12,16 @@ public class Plant {
     public Long id;
     public String plantCommonName;
     public String plantImageUrl;
-
+    public Long plantIdFromApi;
 
 //    --- Garden / Plant Table relationship ---
     @ManyToOne Garden garden;
 
 //    --- Constructor / Getters / Setters ---
-    public Plant(String plantCommonName, String plantImageUrl) {
+    public Plant(String plantCommonName, String plantImageUrl, Long plantIdFromApi) {
         this.plantCommonName = plantCommonName;
         this.plantImageUrl = plantImageUrl;
+        this.plantIdFromApi = plantIdFromApi;
     }
 
     public String getPlantCommonName() {

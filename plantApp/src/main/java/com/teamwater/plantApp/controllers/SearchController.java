@@ -45,6 +45,7 @@ public class SearchController {
     //A JSON object returns a given plant. We'll make a list of parsed plants from those JSON objects. Add this to page model
 
     //Render page
+    //Do we need line 49 and 50? Not sure if it's redundant -mw/pc
     @GetMapping("/newsearch")
     public String startNewSearch(){
         return "search";
@@ -123,4 +124,4 @@ public class SearchController {
     }
 
 
-}
+

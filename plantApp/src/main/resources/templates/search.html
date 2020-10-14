@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:replace="fragments/headFrag :: head"></head>
-<nav th:replace="fragments/navFrag :: nav"></nav>
+    <head th:replace="fragments/headFrag :: head"></head>
+
 <body>
-<h1>Welcome to the search page</h1>
+    <nav th:replace="fragments/navFrag :: nav"></nav>
+    <h1>Welcome to the search page</h1>
 
 <!--Relies on api to grab plants-->
 
@@ -14,10 +15,17 @@
 <!--    <input type="submit" name="search">-->
 <!--</form>-->
 
+    <input id="searchBar" type="text">
+    <button id="searchButton" type="submit">Search</button>
 
-<ul>
-    <li th:each = "plant:${plants}" th:text="${plant.name}"></li>
-</ul>
-<footer th:replace="fragments/footerFrag :: footer"></footer>
+
+    <ol>
+        <li th:each = "plant : ${plants}">
+            <h2 th:text="${plant.common_name}"></h2>
+            <img th:src="${plant.image_url}" alt="" style="max-height: 200px">
+        </li>
+    </ol>
+    <footer th:replace="fragments/footerFrag :: footer"></footer>
+    <script src="/public/search.js"></script>
 </body>
 </html>

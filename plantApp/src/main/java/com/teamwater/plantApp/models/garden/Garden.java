@@ -22,9 +22,9 @@ public class Garden {
         this.gardenName = gardenName;
     }
 
-
 //    --- Garden / User Table RelationShip ---
-    @ManyToOne AppUser user;    // user should be able to have multiple gardens
+    @ManyToOne
+    public AppUser appUser;    // user should be able to have multiple gardens
 
 
 //    --- Garden / Plant Table RelationShip ---
@@ -32,9 +32,12 @@ public class Garden {
     private Set<Plant> plantsInGarden = new HashSet<>();
 
 //    --- add plant methods ---
-    public void addPlant(Plant plant) {plantsInGarden.add(plant);}
-    public void removePlant(Plant plant) {plantsInGarden.remove(plant);}
-
+    public void addPlant(Plant plant) {
+        plantsInGarden.add(plant);
+    }
+    public void removePlant(Plant plant) {
+        plantsInGarden.remove(plant);
+    }
 
 //    --- getters & setters ---
     public long getId() {
@@ -48,9 +51,7 @@ public class Garden {
     public String getGardenName() {
         return gardenName;
     }
-
     public void setGardenName(String gardenName) {
         this.gardenName = gardenName;
     }
-
 }

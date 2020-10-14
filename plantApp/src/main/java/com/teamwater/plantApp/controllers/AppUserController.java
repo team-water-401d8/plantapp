@@ -1,5 +1,7 @@
 package com.teamwater.plantApp.controllers;
 
+import com.teamwater.plantApp.models.garden.Garden;
+import com.teamwater.plantApp.models.garden.GardenRepository;
 import com.teamwater.plantApp.models.user.AppUser;
 import com.teamwater.plantApp.models.user.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class AppUserController {
@@ -21,6 +24,9 @@ public class AppUserController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    GardenRepository gardenRepository;
 
     //================================= follow + unfollow =============================================================
     @PostMapping("/follow")
@@ -45,6 +51,7 @@ public class AppUserController {
         System.out.println("You unfollowed a user!" + userToUnfollow.getUsername());
         return new RedirectView("/user/" + userToUnfollow.getUsername());
     }
+
     //==================================== about us ============================================================
     @GetMapping("/about")
     public String renderAbout(Principal principal, Model m) {
@@ -91,6 +98,15 @@ public class AppUserController {
         }
         userinfo.addAttribute("user", user);
         userinfo.addAttribute("principal", principal);
+
+
+        //        delete and refactor later.
+        List<Garden> gardenMess = gardenRepository.findAllByAppUserId(user.getId());
+        userinfo.addAttribute("gardenMess", gardenMess);
+        System.out.println(gardenMess.size());
+
+
+
         return "profile";
     }
     @GetMapping("/profile")

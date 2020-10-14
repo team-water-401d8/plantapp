@@ -21,12 +21,7 @@
     </select>
     <input type="submit" value="submit">
 </form>
-<!--<form action="/signup" method="POST">-->
-<!--    <input type="text" th:value="name">-->
-<!--    <input type="hidden" th:value="${user.getUsername}">-->
-<!--    <input type="hidden" th:value="${user.getPassword}">-->
-<!--    <input type="submit" value="change name">-->
-<!--</form>-->
+
 <!--Follow and unfollow form-->
 <form th:if="${user.getUsername()} != ${principal.getName()}" action="/follow" method="POST">
     <input type="hidden" name="id" th:value="${user.id}">
@@ -36,7 +31,37 @@
     <input type="hidden" name="id" th:value="${user.getId()}">
     <input type="submit" th:value="'Stop following ' + ${user.getUsername()}">
 </form>
-<!--TODO: Users can view their garden/plants on the profile page-->
+
+<!--====================TODO: Users can view their garden/plants on the profile page====================-->
+<form action="/addGarden" method="POST">
+    <input type="text" name="gardenName" placeholder="garden name">
+    <input type="text" name="gardenBio" placeholder="garden bio">
+    <input type="hidden" name="id" th:value="${user.id}">
+    <input type="submit" value="Create garden">
+</form>
+
+
+<!--<div th:each="garden : ${gardenMess}">-->
+<!--    <p th:text="${garden.getGardenName()}"></p>-->
+<!--&lt;!&ndash;    <div th:each="plant : ${garden.getplant?}">&ndash;&gt;-->
+<!--&lt;!&ndash;        <img th:img="${plant.getTitle()}">&ndash;&gt;-->
+<!--&lt;!&ndash;        <img th:img="${plant.getImg()}">&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--</div>-->
+
+<div th:each="garden : ${gardenMess}" class="card" style="width: 18rem;">
+    <img src="images/download.jpg" class="card-img-top" alt="Image">
+    <div class="card-body">
+        <h5 th:text="${garden.getGardenName()}" class="card-title">Card title</h5>
+        <a href="/garden" class="btn btn-primary">Go to garden</a>
+    </div>
+<!--    <form action="/removeGarden" method="POST">-->
+<!--        <input type="hidden" name="id" th:value="${user.id}">-->
+<!--        <input type="submit" value="Delete garden">-->
+<!--    </form>-->
+</div>
+
+
 <!--View people currently following-->
 <div th:each="follow : ${user.getFollowing()}">
     <p>Following: </p><a th:href="'/user/' + ${follow.getUsername()}" th:text="${follow.getUsername()}"></a>

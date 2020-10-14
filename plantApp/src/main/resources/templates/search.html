@@ -6,19 +6,13 @@
     <nav th:replace="fragments/navFrag :: nav"></nav>
     <h1>Welcome to the search page</h1>
 
-<!--Relies on api to grab plants-->
-
-<!--<form action="/searchPlant" method="POST">-->
-<!--    <input type="text" name="nameOfPlant">-->
-<!--    <input type="radio" name="color">-->
-<!--    <input type="radio" name="edible">-->
-<!--    <input type="submit" name="search">-->
-<!--</form>-->
-
     <input id="searchBar" type="text">
     <button id="searchButton" type="submit">Search</button>
 
 
+
+<!--    We should create a button or something, where when someone adds a plant, they are notified it has been added-->
+<!--         Adding plants should utilize a dropdown menu to select which garden to save it to            -->
     <ol>
         <li th:each = "plant : ${plants}">
             <form class="addPlant">
@@ -27,7 +21,11 @@
 
                 <input class="common_name" type="hidden" th:value="${plant.common_name}" th:name="common_name">
                 <input class="image_url" type="hidden" th:value="${plant.image_url}" th:name="image_url">
-                <input type="submit" value="add">
+                <select name="gardens" id="garden-selection">
+                    <option value="">--Please choose an option--</option>
+                    <option th:each="garden : ${gardenMess}" th:value="${garden.getGardenName()}"></option>
+                </select>
+                <input type="submit" value="add to garden">
             </form>
         </li>
     </ol>

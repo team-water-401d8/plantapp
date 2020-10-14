@@ -6,28 +6,39 @@
 </head>
 <body>
 
-<nav th:fragment="nav">
-<!--    color can be added or changed within the initial nav class     -->
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" >PlantsRus</a>
-            </div>
-            <ul class="nav navbar-nav">
-
-                <li><a href="/">Home</a></li>
-                <li><a href="/search">Search</a></li>
-                <li th:if="${user} != null"><a href="/profile">Profile</a></li>
-                <li><a href="/about">About Us</a></li>
-
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li th:if="${user} == null"><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li th:if="${user} == null"><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                <li th:if="${user} != null"><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-            </ul>
-        </div>
-    </nav>
+<nav th:fragment="nav" class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: bisque">
+    <a class="navbar-brand">PlantsRus</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/search">Search</a>
+            </li>
+            <li class="nav-item">
+                <a th:if="${user} != null" class="nav-link" href="/profile">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About Us</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item">
+                <a th:if="${user} == null" class="nav-link" href="/signup">Sign up</a>
+            </li>
+            <li class="nav-item">
+                <a th:if="${user} == null" class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a th:if="${user} != null" class="nav-link" href="/logout">Logout</a>
+            </li>
+    </span>
+    </div>
+</nav>
 
 </body>
 </html>

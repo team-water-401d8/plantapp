@@ -35,26 +35,25 @@
 <!--====================TODO: Users can view their garden/plants on the profile page====================-->
 <form action="/addGarden" method="POST">
     <input type="text" name="gardenName" placeholder="garden name">
-    <input type="text" name="gardenBio" placeholder="garden bio">
     <input type="hidden" name="id" th:value="${user.id}">
     <input type="submit" value="Create garden">
 </form>
 
 
-<!--<div th:each="garden : ${gardenMess}">-->
-<!--    <p th:text="${garden.getGardenName()}"></p>-->
-<!--&lt;!&ndash;    <div th:each="plant : ${garden.getplant?}">&ndash;&gt;-->
-<!--&lt;!&ndash;        <img th:img="${plant.getTitle()}">&ndash;&gt;-->
-<!--&lt;!&ndash;        <img th:img="${plant.getImg()}">&ndash;&gt;-->
-<!--&lt;!&ndash;    </div>&ndash;&gt;-->
-<!--</div>-->
-
-<div th:each="garden : ${gardenMess}" class="card" style="width: 18rem;">
-    <img src="images/download.jpg" class="card-img-top" alt="Image">
-    <div class="card-body">
-        <h5 th:text="${garden.getGardenName()}" class="card-title">Card title</h5>
-        <a href="/garden" class="btn btn-primary">Go to garden</a>
+<div th:each="garden : ${gardenMess}">
+    <p th:text="${garden.getGardenName()}"></p>
+<!--    <div th:each="plant : ${garden.getplant?}">-->
+<!--        <img th:img="${plant.getTitle()}">-->
+<!--        <img th:img="${plant.getImg()}">-->
     </div>
+</div>
+
+<!--<div th:each="garden : ${gardenMess}" class="card" style="width: 18rem;">-->
+<!--    <img src="images/download.jpg" class="card-img-top" alt="Image">-->
+<!--    <div class="card-body">-->
+<!--        <h5 th:text="${garden.getGardenName()}" class="card-title">Card title</h5>-->
+<!--        <a href="/garden" class="btn btn-primary">Go to garden</a>-->
+<!--    </div>-->
 <!--    <form action="/removeGarden" method="POST">-->
 <!--        <input type="hidden" name="id" th:value="${user.id}">-->
 <!--        <input type="submit" value="Delete garden">-->

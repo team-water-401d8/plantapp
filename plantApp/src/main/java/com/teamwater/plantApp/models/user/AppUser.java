@@ -40,6 +40,7 @@ public class AppUser implements UserDetails {
 
 
 //    --- constructors ---
+
     public AppUser(){}
 
     public AppUser(String username, String password) {

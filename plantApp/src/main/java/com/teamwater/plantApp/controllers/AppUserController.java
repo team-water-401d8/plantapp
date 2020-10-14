@@ -45,6 +45,7 @@ public class AppUserController {
         System.out.println("You unfollowed a user!" + userToUnfollow.getUsername());
         return new RedirectView("/user/" + userToUnfollow.getUsername());
     }
+
     //==================================== about us ============================================================
     @GetMapping("/about")
     public String renderAbout(Principal principal, Model m) {

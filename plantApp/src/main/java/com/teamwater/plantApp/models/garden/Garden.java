@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table (name="GARDENS")
 public class Garden {
 
     @Id
@@ -30,6 +29,7 @@ public class Garden {
 //    --- Garden / Plant Table RelationShip ---
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Plant> plantsInGarden = new HashSet<>();
+
 
 //    --- add plant methods ---
     public void addPlant(Plant plant) {plantsInGarden.add(plant);}

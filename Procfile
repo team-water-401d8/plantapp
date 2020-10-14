@@ -1,1 +1,1 @@
-web: java -jar target/plantApp-0.0.1-SNAPSHOT.jar
+java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/*.jar

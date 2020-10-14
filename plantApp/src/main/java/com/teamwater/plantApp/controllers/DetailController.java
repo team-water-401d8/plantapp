@@ -68,15 +68,29 @@ public class DetailController {
         public String commonName;
         @SerializedName(value="scientific_name")
         public String scientificName;
-//        public String[] additionalImageUrl;
         @SerializedName(value="edible")
         public Boolean isPlantEdible;
         @SerializedName(value="edible_part")
         public String[] ediblePart;
+        public PlantImageContainerDto images;
     }
 
     class DataDto {
         public PlantDetailDto data;
-
     }
+    class PlantImageDto{
+        public Long id;
+        public String image_url;
+        public String copyright;
+    }
+
+    class PlantImageContainerDto{
+        public PlantImageDto[] flower;
+        public PlantImageDto[] leaf;
+        public PlantImageDto[] habit;
+        public PlantImageDto[] fruit;
+        public PlantImageDto[] bark;
+        public PlantImageDto[] other;
+    }
+
 }

@@ -20,6 +20,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +55,7 @@ public class SearchController {
     @GetMapping("/search")
     public String searchForPlant(
             Model m,
+            Principal principal,
             @RequestParam(required = false) String q,
             @RequestParam(required = false) String page
     ){
@@ -61,12 +63,14 @@ public class SearchController {
         String apiUrl = "https://trefle.io/api/v1/plants/search?token=" + System.getenv("TREFLE_API_KEY") + "&filter_not[common_name]";
         if (q != null){
             apiUrl += "&q=" + q;
+            System.out.println(q);
         }
         if (page != null) { // Address the offset of numbers per page (have gotten ranging values from 18 to 20)
             apiUrl += "&page=" + page;
         }
         PlantDTO[] capturedPlants;
         System.out.println(apiUrl);
+        apiUrl = apiUrl.replace(" ", "%20");
 
         try {
             capturedPlants = callApi(apiUrl);
@@ -76,6 +80,8 @@ public class SearchController {
             System.out.println(exception.getMessage());
         }
 
+        //TODO:get together to re-do the garden/plant relationship
+        //use principal to find user/garden
 
         return "search";
     }
@@ -121,6 +127,7 @@ public class SearchController {
 //            "plant": "/api/v1/plants/allium-fistulosum",
 //            "genus": "/api/v1/genus/allium" }
         }
+
     }
 
 

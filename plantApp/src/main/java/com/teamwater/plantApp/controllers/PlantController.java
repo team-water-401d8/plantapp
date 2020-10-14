@@ -1,9 +1,14 @@
 package com.teamwater.plantApp.controllers;
 
 import com.nimbusds.oauth2.sdk.http.HTTPRequest;
+<<<<<<< HEAD
 import com.teamwater.plantApp.models.garden.Garden;
 import com.teamwater.plantApp.models.plant.Plant;
+=======
+import com.teamwater.plantApp.models.garden.GardenRepository;
+>>>>>>> 4e87aa583f3b3924f6e151cc9d6db0f9924ee0b9
 import com.teamwater.plantApp.models.plant.PlantRepository;
+import com.teamwater.plantApp.models.user.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
@@ -22,15 +27,23 @@ public class PlantController {
     @Autowired
     PlantRepository plantRepository;
 
+    @Autowired
+    AppUserRepository AppUserRepository;
+
+    @Autowired
+    GardenRepository gardenRepository;
+
 //  ======== routes =======
     @PostMapping("/addPlantToGarden")
     @ResponseStatus(value= HttpStatus.OK)
     public void addPlantToGarden(@RequestParam(value="common_name")String common_name,
                                  @RequestParam(value="image_url")String image_url){
 
+        //how do i know which user I am logged in as
+        //how do i know which gardens the user has
+
         System.out.println(common_name);
         System.out.println(image_url);
-
         System.out.println("------ added PLANT TO DB ------");
     }
 

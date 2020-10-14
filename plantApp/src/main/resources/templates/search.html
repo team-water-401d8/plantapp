@@ -15,17 +15,28 @@
 
 <!--    We should create a button or something, where when someone adds a plant, they are notified it has been added-->
 <!--         Adding plants should utilize a dropdown menu to select which garden to save it to            -->
-    <ol>
-        <li th:each = "plant : ${plants}">
-            <form class="addPlant" th:id="${plant.id}">
+    <div class="container">
+        <div th:each = "plant : ${plants}" class="card" style="width: 35rem;">
+            <div class="card-body">
+                <h2 class="card-title" th:text="${plant.common_name}"></h2>
+                <form class="addPlant" th:id="${plant.id}">
 
-                <h2 th:text="${plant.common_name}"></h2>
-                <img th:src="${plant.image_url}" alt="" style="max-height: 200px">
+                    <input type="submit" class="plant-details" th:id="${plant.id}" value="view details">
+                </form>
+            </div>
+            <img th:src="${plant.image_url}" alt="" class="card-img-bottom">
+        </div>
 
-            </form>
-            <input type="submit" class="plant-details" th:id="${plant.id}" value="view details">
-        </li>
-    </ol>
+<!--            <li th:each = "plant : ${plants}">-->
+<!--                <form class="addPlant" th:id="${plant.id}">-->
+
+<!--                    <h2 th:text="${plant.common_name}"></h2>-->
+<!--                    <img th:src="${plant.image_url}" alt="" style="max-height: 200px">-->
+
+<!--                </form>-->
+<!--                <input type="submit" class="plant-details" th:id="${plant.id}" value="view details">-->
+<!--            </li>-->
+    </div>
 
     <footer th:replace="fragments/footerFrag :: footer"></footer>
 

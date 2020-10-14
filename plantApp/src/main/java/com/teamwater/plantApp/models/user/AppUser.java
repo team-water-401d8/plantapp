@@ -1,6 +1,8 @@
 package com.teamwater.plantApp.models.user;
 
+import com.teamwater.plantApp.models.garden.Garden;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -18,10 +20,9 @@ public class AppUser implements UserDetails {
 
     private String username;
     private String password;
-    private String firstName;
-//    private String lastName;
-//    private String bio;
 
+
+//    --- User Table Relationships ---
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "follows",
@@ -33,15 +34,25 @@ public class AppUser implements UserDetails {
     @ManyToMany(mappedBy = "following")
     Set<AppUser> followers = new HashSet<>();
 
+
+//    --- Garden Table Relationship
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Garden> userGarden = new HashSet<>();
+
+
+//    --- constructors ---
     public AppUser(){}
 
     public AppUser(String username, String password) {
         this.username = username;
         this.password = password;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.bio = bio;
     }
+
+
+//    --- garden methods ---
+    public void addGarden(Garden garden) {userGarden.add(garden);}
+    public void removeGarden(Garden garden) {userGarden.remove(garden);}
+
 
 //    --- follow methods ---
     public void removeFollower(AppUser follower) {
@@ -111,7 +122,7 @@ public class AppUser implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection<? extends GrantedAuthority> getAuthorities(){
         return null;
     }
 

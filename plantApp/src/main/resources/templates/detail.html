@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head th:replace="fragments/headFrag :: head"></head>
+</head>
+<nav th:replace="fragments/navFrag :: nav"></nav>
+<body>
+<h1>Details of your plant:</h1>
+
+        <h2 th:text="${plant.commonName}"></h2>
+        <h3 th:text="${plant.scientificName}"></h3>
+        <p th:if="${plant.isPlantEdible}" th:text="Edible"></p>
+<!--        <p th:unless="${plant.isPlantEdible}" th:text="Plant is Not Edible"></p>-->
+        <p th:each ="plant : ${plant.ediblePart}"></p>
+<!--        <img th:each = "url : ${plant.additonalImageUrl}" src="url" alt="" style="max-height: 200px">-->
+<!--        <img th:src="${plant.image_url}" alt="" style="max-height: 200px">-->
+
+<footer th:replace="fragments/footerFrag :: footer"></footer>
+</body>
+</html>

@@ -1,14 +1,13 @@
 package com.teamwater.plantApp.models.user;
 
 import com.teamwater.plantApp.models.garden.Garden;
+import com.teamwater.plantApp.models.plant.Plant;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table (uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
@@ -37,7 +36,7 @@ public class AppUser implements UserDetails {
 
 //    --- Garden Table Relationship
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Garden> userGarden = new HashSet<>();
+    public List<Garden> userGarden = new ArrayList<>();
 
 
 //    --- constructors ---
@@ -47,7 +46,13 @@ public class AppUser implements UserDetails {
         this.username = username;
         this.password = password;
     }
+    public List<Garden> getGarden() {
+        return userGarden;
+    }
 
+    public void setUserGarden(List<Garden> userGarden) {
+        this.userGarden = userGarden;
+    }
 
 //    --- garden methods ---
     public void addGarden(Garden garden) {userGarden.add(garden);}

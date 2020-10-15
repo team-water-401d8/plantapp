@@ -42,8 +42,10 @@ public class PlantController {
 
         System.out.println("plantIdFromApi " + plantIdFromApi);
         System.out.println("gardenId " + gardenId);
-        System.out.println("gardenId's id " + gardenId.getClass());
-        System.out.println("plantIdFromApi's class " + plantIdFromApi.getClass());
+//        System.out.println("gardenId's id " + gardenId.getClass());
+//        System.out.println("plantIdFromApi's class " + plantIdFromApi.getClass());
+        System.out.println(" the common name is: ====================" + common_name);
+        System.out.println(" the image url is: =====================" + image_url);
 
         Garden garden = gardenRepository.getOne(gardenId);
         Plant plant = plantRepository.findByPlantIdFromApi(plantIdFromApi);
@@ -61,5 +63,4 @@ public class PlantController {
         System.out.println(image_url);
         System.out.println("------ added PLANT TO DB ------");
     }
-
 }

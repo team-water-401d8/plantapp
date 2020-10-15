@@ -2,7 +2,7 @@
 <html lang="en">
 <head th:replace="fragments/headFrag :: head"></head>
 <nav th:replace="fragments/navFrag :: nav"></nav>
-<body>
+<body style="background-color:#f7e7ce">
 <h1>Welcome to you profile</h1>
 <!--User personal information displayed-->
 <section th:if="${user}" th:each="user : ${user}">
@@ -67,7 +67,8 @@
     <p th:text="${garden.getGardenName()}"></p>
     <div th:each="plant : ${garden.plantsInGarden}">
         <h3 th:text="${plant.getPlantCommonName()}"></h3>
-        <img th:src="${plant.getPlantImageUrl()}" style="max-height: 100px" alt="image">
+        <img th:if="${plant.getPlantImageUrl()}" th:src="${plant.getPlantImageUrl()}" style="max-height: 100px" alt="image">
+        <img th:unless="${plant.getPlantImageUrl()}" src="images/planthand.jpeg" style="max-height: 100px" alt="imageBroken">
             <a th:href="'/detail/' +${plant.plantIdFromApi}">More details</a>
     </div>
 

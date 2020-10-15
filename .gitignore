@@ -22,7 +22,7 @@ build/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-*.properties
+application.properties
 .DS_Store
 
 ### NetBeans ###

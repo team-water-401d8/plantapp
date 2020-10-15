@@ -3,6 +3,10 @@ package com.teamwater.plantApp.models.plant;
 import com.teamwater.plantApp.models.garden.Garden;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Plant {
@@ -15,7 +19,9 @@ public class Plant {
     public Long plantIdFromApi;
 
 //    --- Garden / Plant Table relationship ---
-    @ManyToOne Garden garden;
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    public Set<Garden> listOfGardens = new HashSet<>();
+
 
 //    --- Constructor / Getters / Setters ---
     public Plant(String plantCommonName, String plantImageUrl, Long plantIdFromApi) {
@@ -23,6 +29,7 @@ public class Plant {
         this.plantImageUrl = plantImageUrl;
         this.plantIdFromApi = plantIdFromApi;
     }
+    public Plant(){}
 
     public String getPlantCommonName() {
         return plantCommonName;

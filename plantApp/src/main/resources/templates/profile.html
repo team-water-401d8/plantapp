@@ -11,8 +11,8 @@
     <!--    <p th:text="${user.lastName}"></p>-->
     <!--    <p th:text="${user.bio}"></p>-->
 </section >
-<!--TODO: Allow the user to modify their information + add avatar/image-->
-<form>
+
+<form th:if="${user.getUsername()} == ${principal.getName()}">
     <fieldset>Select an avatar</fieldset>
     <select name="avatar" id="avatarList">
         <option value="1">one</option>
@@ -33,7 +33,7 @@
 </form>
 
 <!--====================TODO: Users can view their garden/plants on the profile page====================-->
-<form action="/addGarden" method="POST">
+<form th:if="${user.getUsername()} == ${principal.getName()}" action="/addGarden" method="POST">
     <input type="text" name="gardenName" placeholder="garden name">
     <input type="hidden" name="id" th:value="${user.id}">
     <input type="submit" value="Create garden">
@@ -42,11 +42,13 @@
 
 <div th:each="garden : ${gardenMess}">
     <p th:text="${garden.getGardenName()}"></p>
-<!--    <div th:each="plant : ${garden.getplant?}">-->
-<!--        <img th:img="${plant.getTitle()}">-->
-<!--        <img th:img="${plant.getImg()}">-->
+    <div th:each="plant : ${garden.plantsInGarden}">
+        <h3 th:text="${plant.getPlantCommonName()}"></h3>
+        <img th:src="${plant.getPlantImageUrl()}" style="max-height: 100px" alt="image">
+            <a th:href="'/detail/' +${plant.plantIdFromApi}">More details</a>
     </div>
 </div>
+
 
 <!--<div th:each="garden : ${gardenMess}" class="card" style="width: 18rem;">-->
 <!--    <img src="images/download.jpg" class="card-img-top" alt="Image">-->

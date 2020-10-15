@@ -15,28 +15,32 @@
 
 <!--    We should create a button or something, where when someone adds a plant, they are notified it has been added-->
 <!--         Adding plants should utilize a dropdown menu to select which garden to save it to            -->
-    <div class="container">
-        <div th:each = "plant : ${plants}" class="card" style="width: 35rem;">
-            <div class="card-body">
-                <h2 class="card-title" th:text="${plant.common_name}"></h2>
-                <form class="addPlant" th:id="${plant.id}">
 
-                    <input type="submit" class="plant-details" th:id="${plant.id}" value="view details">
-                </form>
-            </div>
-            <img th:src="${plant.image_url}" alt="" class="card-img-bottom">
-        </div>
+    <ol>
+        <li th:each = "plant : ${plants}">
+                <h2 th:text="${plant.common_name}"></h2>
+                <img th:src="${plant.image_url}" alt="" style="max-height: 200px">
+            <form th:if="${user}" class="addPlant">
+                <p hidden value="${plant.common_name}" id="commonName"></p>
+                <p hidden value="${plant.image_url}" id="imageName"></p>
+                <input class="common_name" type="hidden" th:value="${plant.common_name}" th:name="common_name">
+                <input class="image_url" type="hidden" th:value="${plant.image_url}" th:name="image_url">
+<!--                <input class="plantIdFromApi" type="hidden" th:value="${plant.plantIdFromApi}" th:name="plantIdFromApi">-->
 
-<!--            <li th:each = "plant : ${plants}">-->
-<!--                <form class="addPlant" th:id="${plant.id}">-->
 
-<!--                    <h2 th:text="${plant.common_name}"></h2>-->
-<!--                    <img th:src="${plant.image_url}" alt="" style="max-height: 200px">-->
+                <select name="gardens" id="gardenSelection">
+                    <option value="">--Please choose an option--</option>
+                    <option th:each="garden : ${gardens}" th:text="${garden.getGardenName()}" th:value="${garden.getId()}"></option>
+                </select>
+                <button type="submit" th:id="${plant.id}">add to garden</button>
 
-<!--                </form>-->
-<!--                <input type="submit" class="plant-details" th:id="${plant.id}" value="view details">-->
-<!--            </li>-->
-    </div>
+
+
+
+            </form>
+            <input type="submit" class="plant-details" th:id="${plant.id}" value="view details">
+        </li>
+    </ol>
 
     <footer th:replace="fragments/footerFrag :: footer"></footer>
 

@@ -27,8 +27,13 @@ public class Garden {
 
 
 //    --- Garden / Plant Table RelationShip ---
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Plant> plantsInGarden = new HashSet<>();
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    @JoinTable(
+            name = "GardensToPlants",
+            joinColumns = { @JoinColumn(name = "gardenId")},
+            inverseJoinColumns = {@JoinColumn(name = "plantId")}
+    )
+    public Set<Plant> plantsInGarden = new HashSet<>();
 
 
 //    --- add plant methods ---

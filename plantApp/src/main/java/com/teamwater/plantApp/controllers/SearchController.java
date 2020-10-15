@@ -2,9 +2,11 @@ package com.teamwater.plantApp.controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import com.teamwater.plantApp.models.garden.Garden;
 import com.teamwater.plantApp.models.garden.GardenRepository;
 import com.teamwater.plantApp.models.plant.Plant;
 import com.teamwater.plantApp.models.plant.PlantRepository;
+import com.teamwater.plantApp.models.user.AppUser;
 import com.teamwater.plantApp.models.user.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,11 +48,6 @@ public class SearchController {
     //A JSON object returns a given plant. We'll make a list of parsed plants from those JSON objects. Add this to page model
 
     //Render page
-    //Do we need line 49 and 50? Not sure if it's redundant -mw/pc
-    @GetMapping("/newsearch")
-    public String startNewSearch(){
-        return "search";
-    }
 
     @GetMapping("/search")
     public String searchForPlant(
@@ -59,7 +56,18 @@ public class SearchController {
             @RequestParam(required = false) String q,
             @RequestParam(required = false) String page
     ){
+        if(principal != null){
+            AppUser user = appUserRepository.findByUsername(principal.getName());
+            List<Garden> gardens = gardenRepository.findAllByAppUserId(user.getId());
+            m.addAttribute("gardens", gardens);
+            m.addAttribute("user", user);
+        }
+
         //Setting up the API url. q represents the user input (a string) that is added to the API query.
+        if(q == null && page == null){
+            return "search";
+        }
+
         String apiUrl = "https://trefle.io/api/v1/plants/search?token=" + System.getenv("TREFLE_API_KEY") + "&filter_not[common_name]";
         if (q != null){
             apiUrl += "&q=" + q;
@@ -79,9 +87,6 @@ public class SearchController {
             exception.printStackTrace();
             System.out.println(exception.getMessage());
         }
-
-        //TODO:get together to re-do the garden/plant relationship
-        //use principal to find user/garden
 
         return "search";
     }

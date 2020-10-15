@@ -10,19 +10,27 @@
             <h1 th:text="${user.getUsername()}" class="display-3"></h1>
             <p class="lead">User Profile</p>
             <hr class="my-4">
+
+
+            <form>
+                <fieldset>Select an avatar</fieldset>
+                <select name="avatar" id="avatarList">
+                    <option value="1">one</option>
+                    <option value="2">two</option>
+                    <option value="3">three</option>
+                </select>
+                <input type="submit" value="submit">
+            </form>
+
+            <form th:if="${user.getUsername()} != ${principal.getName()}" action="/profile" method="post">
+                <input type="text" name="bio">
+                <input type="submit" value="add Bio">
+            </form>
+          
         </section>
     </div>
 
     <!--TODO: Allow the user to modify their information + add avatar/image-->
-    <form>
-        <fieldset>Select an avatar</fieldset>
-        <select name="avatar" id="avatarList">
-            <option value="1">one</option>
-            <option value="2">two</option>
-            <option value="3">three</option>
-        </select>
-        <input type="submit" value="submit">
-    </form>
 
     <!--Follow and unfollow form-->
     <form th:if="${user.getUsername()} != ${principal.getName()}" action="/follow" method="POST">

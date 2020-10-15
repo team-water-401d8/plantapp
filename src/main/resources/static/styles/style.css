@@ -111,6 +111,22 @@
   background-color: #3b5998;
 }
 
+/* home page
+--------------------------------------------------*/
+.bannerContainer {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
 /* Fallback for Edge
 -------------------------------------------------- */
 

@@ -7,25 +7,25 @@
 <body>
 
 <nav th:fragment="nav" class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #f4dfbd">
-    <h1 style="color:green;" class="navbar-brand"><i class="fas fa-seedling"></i>
+    <h1 style="color:green; font-size:30px;" class="navbar-brand"><i class="fas fa-seedling"></i>
 
-        PlantsRus</h1>
+        myGardn</h1>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a style="color:green;" class="nav-link" href="/">Home</a>
+            <li class="nav-item">
+                <a style="color:green; font-size:20px;" class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a style="color:green;" class="nav-link" href="/search">Search</a>
+                <a style="color:green; font-size:20px;" class="nav-link" href="/search">Search</a>
             </li>
             <li class="nav-item">
-                <a style="color:green;" th:if="${user} != null" class="nav-link" href="/profile">Profile</a>
+                <a style="color:green; font-size:20px;" th:if="${user} != null" class="nav-link" href="/profile">Profile</a>
             </li>
             <li class="nav-item">
-                <a style="color:green;" class="nav-link" href="/about">About Us</a>
+                <a style="color:green; font-size:20px;" class="nav-link" href="/about">About Us</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">

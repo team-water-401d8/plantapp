@@ -54,15 +54,17 @@
     <input type="submit" value="Create garden">
 </form>
 
-
-<div th:each="garden : ${gardenMess}">
-    <p th:text="${garden.getGardenName()}"></p>
-    <div th:each="plant : ${garden.plantsInGarden}">
-        <h3 th:text="${plant.getPlantCommonName()}"></h3>
-        <img th:if="${plant.getPlantImageUrl()}" th:src="${plant.getPlantImageUrl()}" style="max-height: 100px" alt="image">
-        <img th:unless="${plant.getPlantImageUrl()}" src="images/planthand.jpeg" style="max-height: 100px" alt="imageBroken">
-            <a th:href="'/detail/' +${plant.plantIdFromApi}">More details</a>
-    </div>
+<div class="container">
+    <div class="row">
+        <div class="card-columns">
+            <div th:each="garden : ${gardenMess}" class="card">
+                <h3 th:text="${garden.getGardenName()}" class="card-title" style="text-decoration: underline;"></h3>
+                <div th:each="plant : ${garden.plantsInGarden}">
+                    <img th:if="${plant.getPlantImageUrl()}" th:src="${plant.getPlantImageUrl()}" style="height: 200px; width: 200px;" alt="image">
+                    <p th:text="${plant.getPlantCommonName()}"></p>
+                    <a th:href="'/detail/' +${plant.plantIdFromApi}">More details</a>
+                    <hr>
+                </div>
 
 <!--<div th:each="garden : ${gardenMess}" class="card" style="width: 18rem;">-->
 <!--    <img src="images/download.jpg" class="card-img-top" alt="Image">-->
@@ -74,6 +76,9 @@
 <!--        <input type="hidden" name="id" th:value="${user.id}">-->
 <!--        <input type="submit" value="Delete garden">-->
 <!--    </form>-->
+            </div>
+        </div>
+    </div>
 </div>
 
     <!--View people currently following-->

@@ -1,2 +1,0 @@
-com/teamwater/plantApp/PlantAppApplicationTests.java
- com.teamwater.plantApp.PlantAppApplicationTests

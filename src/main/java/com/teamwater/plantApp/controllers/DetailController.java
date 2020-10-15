@@ -34,13 +34,13 @@ public class DetailController {
         String apiUrlDetailQuery = "https://trefle.io/api/v1/species/" + plantIdFromApi + "?token=" + System.getenv("TREFLE_API_KEY");
         PlantDetailDto plant;
         try {
-        plant = callApi(apiUrlDetailQuery);
+            plant = callApi(apiUrlDetailQuery);
         }
 
         catch(IOException e) {
             System.out.println(e.getMessage());
             return "error";
-    }
+        }
         m.addAttribute("plant", plant);
         return "detail";
     }
@@ -72,6 +72,7 @@ public class DetailController {
         public Boolean isPlantEdible;
         @SerializedName(value="edible_part")
         public String[] ediblePart;
+        public String image_url;
         public PlantImageContainerDto images;
     }
 

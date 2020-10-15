@@ -3,10 +3,6 @@
 <head th:replace="fragments/headFrag :: head"></head>
 <nav th:replace="fragments/navFrag :: nav"></nav>
 <body style="background-color:#f7e7ce">
-<hr>
-<hr>
-<hr>
-<!--User personal information displayed-->
 
     <div class="jumbotron">
         <!--User personal information displayed-->
@@ -14,6 +10,7 @@
             <h1 th:text="${user.getUsername()}" class="display-3"></h1>
             <p class="lead">User Profile</p>
             <hr class="my-4">
+
 
             <form>
                 <fieldset>Select an avatar</fieldset>
@@ -29,9 +26,7 @@
                 <input type="text" name="bio">
                 <input type="submit" value="add Bio">
             </form>
-            <!--    <p th:text="${user.firstName}"></p>-->
-            <!--    <p th:text="${user.lastName}"></p>-->
-            <!--    <p th:text="${user.bio}"></p>-->
+          
         </section>
     </div>
 

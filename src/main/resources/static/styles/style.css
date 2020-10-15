@@ -1,3 +1,6 @@
+/* Login & SignUp page
+------------------------------- */
+
 :root {
   --input-padding-x: 1.5rem;
   --input-padding-y: .75rem;
@@ -148,3 +151,40 @@
     color: #777;
   }
 }
+
+
+/* Search page
+------------------------------- */
+
+.card {
+  display: flex;
+  padding: 2rem;
+  max-width: 30rem;
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.jumbotron {
+  background-color: rgba(124,194,175,0.75);
+  margin-top: 1rem;
+}
+
+.search-btn {
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  transition: all 0.2s;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.search-drop {
+  margin-bottom: 1rem;
+  width: 100%;
+  font-size: 80%;
+  padding: 0.5rem;
+}
+
+
+
+

@@ -22,15 +22,38 @@
     <input type="submit" value="submit">
 </form>
 
-<!--Follow and unfollow form-->
-<form th:if="${user.getUsername()} != ${principal.getName()}" action="/follow" method="POST">
-    <input type="hidden" name="id" th:value="${user.id}">
-    <input type="submit" th:value="'Follow ' + ${user.getUsername()}">
-</form>
-<form th:if="${user.getUsername()} != ${principal.getName()} " action="/unfollow" method="POST">
-    <input type="hidden" name="id" th:value="${user.getId()}">
-    <input type="submit" th:value="'Stop following ' + ${user.getUsername()}">
-</form>
+    <div class="jumbotron">
+        <!--User personal information displayed-->
+        <section th:if="${user}" th:each="user : ${user}">
+            <h1 th:text="${user.getUsername()}" class="display-3"></h1>
+            <p class="lead">User Profile</p>
+            <hr class="my-4">
+            <!--    <p th:text="${user.firstName}"></p>-->
+            <!--    <p th:text="${user.lastName}"></p>-->
+            <!--    <p th:text="${user.bio}"></p>-->
+        </section>
+    </div>
+
+    <!--TODO: Allow the user to modify their information + add avatar/image-->
+    <form>
+        <fieldset>Select an avatar</fieldset>
+        <select name="avatar" id="avatarList">
+            <option value="1">one</option>
+            <option value="2">two</option>
+            <option value="3">three</option>
+        </select>
+        <input type="submit" value="submit">
+    </form>
+
+    <!--Follow and unfollow form-->
+    <form th:if="${user.getUsername()} != ${principal.getName()}" action="/follow" method="POST">
+        <input type="hidden" name="id" th:value="${user.id}">
+        <input type="submit" th:value="'Follow ' + ${user.getUsername()}">
+    </form>
+    <form th:if="${user.getUsername()} != ${principal.getName()} " action="/unfollow" method="POST">
+        <input type="hidden" name="id" th:value="${user.getId()}">
+        <input type="submit" th:value="'Stop following ' + ${user.getUsername()}">
+    </form>
 
 <!--====================TODO: Users can view their garden/plants on the profile page====================-->
 <form th:if="${user.getUsername()} == ${principal.getName()}" action="/addGarden" method="POST">
@@ -47,8 +70,6 @@
         <img th:src="${plant.getPlantImageUrl()}" style="max-height: 100px" alt="image">
             <a th:href="'/detail/' +${plant.plantIdFromApi}">More details</a>
     </div>
-</div>
-
 
 <!--<div th:each="garden : ${gardenMess}" class="card" style="width: 18rem;">-->
 <!--    <img src="images/download.jpg" class="card-img-top" alt="Image">-->
@@ -62,11 +83,11 @@
 <!--    </form>-->
 </div>
 
+    <!--View people currently following-->
+    <div th:each="follow : ${user.getFollowing()}">
+        <p>Following: </p><a th:href="'/user/' + ${follow.getUsername()}" th:text="${follow.getUsername()}"></a>
+    </div>
 
-<!--View people currently following-->
-<div th:each="follow : ${user.getFollowing()}">
-    <p>Following: </p><a th:href="'/user/' + ${follow.getUsername()}" th:text="${follow.getUsername()}"></a>
-</div>
-<footer th:replace="fragments/footerFrag :: footer"></footer>
+    <footer th:replace="fragments/footerFrag :: footer"></footer>
 </body>
 </html>

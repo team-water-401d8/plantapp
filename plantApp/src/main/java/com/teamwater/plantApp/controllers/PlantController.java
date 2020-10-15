@@ -1,5 +1,6 @@
 package com.teamwater.plantApp.controllers;
 
+
 import com.nimbusds.oauth2.sdk.http.HTTPRequest;
 import com.teamwater.plantApp.models.garden.Garden;
 import com.teamwater.plantApp.models.garden.GardenRepository;
@@ -59,7 +60,6 @@ public class PlantController {
         System.out.println(common_name);
         System.out.println(image_url);
         System.out.println("------ added PLANT TO DB ------");
-
     }
 
 }

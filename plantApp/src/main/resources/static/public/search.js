@@ -16,6 +16,7 @@ $(".addPlant").on("submit",function(event){
             image_url: $(this).children("#imageName").val(),
             plantIdFromApi: $(this).children("button").attr("id"),
             gardenId: $(this).children("select").children("option:selected").val()
+
         }
     );
    // jQuery post request goes to route

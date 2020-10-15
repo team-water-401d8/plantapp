@@ -3,24 +3,6 @@
 <head th:replace="fragments/headFrag :: head"></head>
 <nav th:replace="fragments/navFrag :: nav"></nav>
 <body style="background-color:#f7e7ce">
-<h1>Welcome to you profile</h1>
-<!--User personal information displayed-->
-<section th:if="${user}" th:each="user : ${user}">
-    <h1 th:text="${user.getUsername()}"></h1>
-    <!--    <p th:text="${user.firstName}"></p>-->
-    <!--    <p th:text="${user.lastName}"></p>-->
-    <!--    <p th:text="${user.bio}"></p>-->
-</section >
-
-<form th:if="${user.getUsername()} == ${principal.getName()}">
-    <fieldset>Select an avatar</fieldset>
-    <select name="avatar" id="avatarList">
-        <option value="1">one</option>
-        <option value="2">two</option>
-        <option value="3">three</option>
-    </select>
-    <input type="submit" value="submit">
-</form>
 
     <div class="jumbotron">
         <!--User personal information displayed-->
@@ -28,9 +10,6 @@
             <h1 th:text="${user.getUsername()}" class="display-3"></h1>
             <p class="lead">User Profile</p>
             <hr class="my-4">
-            <!--    <p th:text="${user.firstName}"></p>-->
-            <!--    <p th:text="${user.lastName}"></p>-->
-            <!--    <p th:text="${user.bio}"></p>-->
         </section>
     </div>
 

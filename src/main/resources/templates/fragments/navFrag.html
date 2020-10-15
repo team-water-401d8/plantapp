@@ -6,37 +6,41 @@
 </head>
 <body>
 
-<nav th:fragment="nav" class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: bisque">
-    <a class="navbar-brand">PlantsRus</a>
+<nav th:fragment="nav" class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #f4dfbd">
+    <h1 style="color:green;" class="navbar-brand"><i class="fas fa-seedling"></i>
+
+        PlantsRus</h1>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                <a style="color:green;" class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/search">Search</a>
+                <a style="color:green;" class="nav-link" href="/search">Search</a>
             </li>
             <li class="nav-item">
-                <a th:if="${user} != null" class="nav-link" href="/profile">Profile</a>
+                <a style="color:green;" th:if="${user} != null" class="nav-link" href="/profile">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/about">About Us</a>
+                <a style="color:green;" class="nav-link" href="/about">About Us</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="nav-item">
-                <a th:if="${user} == null" class="nav-link" href="/signup">Sign up</a>
+                <a style="color:green;" th:if="${user} == null" class="nav-link" href="/signup"><i class="fas fa-user-plus"></i>
+
+                    Sign up</a>
             </li>
             <li class="nav-item">
-                <a th:if="${user} == null" class="nav-link" href="/login">Login</a>
+                <a style="color:green;" th:if="${user} == null" class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i>Login</a>
             </li>
             <li class="nav-item">
-                <a th:if="${user} != null" class="nav-link" href="/logout">Logout</a>
+                <a style="color:green;" th:if="${user} != null" class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
             </li>
-    </span>
+    </ul>
     </div>
 </nav>
 

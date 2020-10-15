@@ -36,11 +36,10 @@ public class AppUser implements UserDetails {
 
 //    --- Garden Table Relationship
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    public List<Garden> userGarden = new ArrayList<>();
+    public List<Garden> userGarden = new ArrayList<>(); //this exists but is not being used.
 
 
 //    --- constructors ---
-
     public AppUser(){}
 
     public AppUser(String username, String password) {

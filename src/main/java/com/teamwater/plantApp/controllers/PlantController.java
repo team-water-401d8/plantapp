@@ -1,7 +1,10 @@
 package com.teamwater.plantApp.controllers;
 
+
 import com.nimbusds.oauth2.sdk.http.HTTPRequest;
+import com.teamwater.plantApp.models.garden.Garden;
 import com.teamwater.plantApp.models.garden.GardenRepository;
+import com.teamwater.plantApp.models.plant.Plant;
 import com.teamwater.plantApp.models.plant.PlantRepository;
 import com.teamwater.plantApp.models.user.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +35,32 @@ public class PlantController {
     @PostMapping("/addPlantToGarden")
     @ResponseStatus(value= HttpStatus.OK)
     public void addPlantToGarden(@RequestParam(value="common_name")String common_name,
-                                         @RequestParam(value="image_url")String image_url){
+                                 @RequestParam(value="image_url")String image_url,
+                                 @RequestParam(value="plantIdFromApi")Long plantIdFromApi,
+                                 @RequestParam(value="gardenId")Long gardenId
+                                 ){
 
-        //how do i know which user I am logged in as
-        //how do i know which gardens the user has
+        System.out.println("plantIdFromApi " + plantIdFromApi);
+        System.out.println("gardenId " + gardenId);
+//        System.out.println("gardenId's id " + gardenId.getClass());
+//        System.out.println("plantIdFromApi's class " + plantIdFromApi.getClass());
+        System.out.println(" the common name is: ====================" + common_name);
+        System.out.println(" the image url is: =====================" + image_url);
+
+        Garden garden = gardenRepository.getOne(gardenId);
+        Plant plant = plantRepository.findByPlantIdFromApi(plantIdFromApi);
+        if(plant == null){
+            plant = new Plant(common_name, image_url, plantIdFromApi);
+            plantRepository.save(plant);
+        }
+        garden.addPlant(plant);
+        plant.listOfGardens.add(garden);
+
+        gardenRepository.save(garden);
+        plantRepository.save(plant);
 
         System.out.println(common_name);
         System.out.println(image_url);
         System.out.println("------ added PLANT TO DB ------");
-
     }
-
 }

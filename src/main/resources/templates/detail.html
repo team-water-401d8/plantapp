@@ -5,46 +5,62 @@
 </head>
 <nav th:replace="fragments/navFrag :: nav"></nav>
 <body style="background-color:#f7e7ce">
-<h1>Details of your plant:</h1>
+    <img th:src="${plant.image_url}" th:alt="${plant.commonName}">
+    <h1>Details:</h1>
 
-        <h2 th:text="${plant.commonName}"></h2>
-        <h3 th:text="${plant.scientificName}"></h3>
-        <p th:if="${plant.isPlantEdible}" th:text="Edible"></p>
-<!--        <p th:unless="${plant.isPlantEdible}" th:text="Plant is Not Edible"></p>-->
-        <div id="additional_images">
-            <ul th:if = "${plant.images.flower}">
-                <h3>Flower:</h3>
-                <li th:each = "flower : ${plant.images.flower}"><img th:src="${flower.image_url}" style="max-height: 200px"></li>
+    <h2 th:text="'Common Name: '+${plant.commonName}"></h2>
+    <h2 th:text="'Scientific Name: '+${plant.scientificName}"></h2>
 
-            </ul>
-            <ul th:if = "${plant.images.leaf}">
-                <h3>Leaf:</h3>
-                <li th:each = "leaf : ${plant.images.leaf}"><img th:src="${leaf.image_url}" style="max-height: 200px"></li>
+    <h2 th:if="${plant.isPlantEdible}" text="This plant is has edible parts:"></h2>
+    <h2 th:unless="${plant.isPlantEdible}" text="This plant is not edible."></h2>
+    <ul th:if="${plant.isPlantEdible}">
 
-            </ul>
-            <ul th:if = "${plant.images.habit}">
-                <h3>Habit:</h3>
-                <li th:each = "habit : ${plant.images.habit}"><img th:src="${habit.image_url}" style="max-height: 200px"></li>
-            </ul>
+        <li th:each ="part : ${plant.ediblePart}" th:text="${part}"></li>
+    </ul>
 
-            <ul th:if = "${plant.images.fruit}">
-                <h3>Fruit:</h3>
-                <li th:each = "fruit : ${plant.images.fruit}"><img th:src="${fruit.image_url}" style="max-height: 200px"></li>
-            </ul>
+    <div id="additionalImageContainer" th:if="${
+        plant.images.flower.length > 0 ||
+        plant.images.leaf.length > 0 ||
+        plant.images.habit.length > 0 ||
+        plant.images.fruit.length > 0 ||
+        plant.images.bark.length > 0 ||
+        plant.images.other.length > 0
+    }">
+        <h1 id="additional_images">Additional Images</h1>
+        <ul th:if = "${plant.images.flower.length > 0}">
+            <h3 style="cursor: pointer">Flower(s):</h3>
+            <img th:each = "flower : ${plant.images.flower}" th:src="${flower.image_url}" style="max-height: 200px; display: none"/>
+        </ul>
 
-            <ul th:if = "${plant.images.bark}">
-                <h3>Bark:</h3>
-                <li th:each = "bark : ${plant.images.bark}"><img th:src="${bark.image_url}" style="max-height: 200px"></li>
-            </ul>
+        <ul th:if = "${plant.images.leaf.length > 0}">
+            <h3 style="cursor: pointer">Leaf(s):</h3>
+            <img th:each = "leaf : ${plant.images.leaf}" th:src="${leaf.image_url}" style="max-height: 200px; display: none"/>
+        </ul>
 
-            <ul th:if = "${plant.images.other}">
-                <h3>Other:</h3>
-                <li th:each = "other : ${plant.images.other}"><img th:src="${other.image_url}" style="max-height: 200px"></li>
-            </ul>
-        </div>
+        <ul th:if = "${plant.images.habit.length > 0}">
+            <h3 style="cursor: pointer">Habit(s):</h3>
+            <img th:each = "habit : ${plant.images.habit}" th:src="${habit.image_url}" style="max-height: 200px; display: none"/>
+        </ul>
 
-        <p th:each ="plant : ${plant.ediblePart}"></p>
+        <ul th:if = "${plant.images.fruit.length > 0}">
+            <h3 style="cursor: pointer">Fruit(s):</h3>
+            <img th:each = "fruit : ${plant.images.fruit}" th:src="${fruit.image_url}" style="max-height: 200px; display: none"/>
+        </ul>
+
+        <ul th:if = "${plant.images.bark.length > 0}">
+            <h3 style="cursor: pointer">Bark:</h3>
+            <img th:each = "bark : ${plant.images.bark}" th:src="${bark.image_url}" style="max-height: 200px; display: none"/>
+        </ul>
+
+        <ul th:if = "${plant.images.other.length > 0}">
+            <h3 style="cursor: pointer">Miscellaneous:</h3>
+            <img th:each = "other : ${plant.images.other}" th:src="${other.image_url}" style="max-height: 200px; display: none"/>
+        </ul>
+    </div>
+
+</body>
 
 <footer th:replace="fragments/footerFrag :: footer"></footer>
+<script src="/public/detail.js"></script>
 </body>
 </html>

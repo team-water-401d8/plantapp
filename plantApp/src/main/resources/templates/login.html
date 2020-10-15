@@ -3,13 +3,26 @@
 <head th:replace="fragments/headFrag :: head"></head>
 <nav th:replace="fragments/navFrag :: nav"></nav>
     <body>
-    <h1>Login Page</h1>
 
-    <form action="/login" method="post">
-        Username <input type="text" name="username">
-        Password <input type="password" name="password">
-        <input type="submit">
-    </form>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Login</h5>
+                        <form class="form-signin" action="/login" method="post">
+                            <div class="form-label-group">
+                                <input class="form-control" type="text" name="username" placeholder="username">
+                                <input class="form-control" type="password" name="password" placeholder="password">
+                                <input type="submit" value="Login">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer th:replace="fragments/footerFrag :: footer"></footer>
     </body>

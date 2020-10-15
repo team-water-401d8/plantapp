@@ -30,3 +30,10 @@ $(".plant-details").on("click",function(){
     let id = $(this).attr("id");
     window.location.href = `/detail/${id}`
 });
+
+// --- changes button color from blue to green ---
+$(".change").click(function(event){
+    let button = $(this);
+    button.addClass("btn-success");
+    button.removeClass("btn-primary");
+});

@@ -4,7 +4,8 @@
 <nav th:replace="fragments/navFrag :: nav"></nav>
     <body>
 
-
+<!--    re-tooled login styling from this source -->
+<!--    https://startbootstrap.com/snippets/login/ -->
     <div class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -12,11 +13,21 @@
                     <div class="card-body">
                         <h5 class="card-title text-center">Login</h5>
                         <form class="form-signin" action="/login" method="post">
+
                             <div class="form-label-group">
-                                <input class="form-control" type="text" name="username" placeholder="username">
-                                <input class="form-control" type="password" name="password" placeholder="password">
-                                <input type="submit" value="Login">
+                                <input type="text" id="inputUsername" class="form-control" placeholder="username" name="username" required autofocus>
+                                <label for="inputUsername">username</label>
                             </div>
+
+                            <div class="form-label-group">
+                                <input type="password" id="inputPassword" class="form-control" placeholder="username" name="password" required autofocus>
+                                <label for="inputPassword">password</label>
+                            </div>
+                            <hr class="my-4">
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Login</button>
+<!--                                FOR FUTURE SIGN IN WITH GOOGLE / FB FUNCTIONALITY -->
+<!--                                <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>-->
+<!--                                <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>-->
                         </form>
                     </div>
                 </div>

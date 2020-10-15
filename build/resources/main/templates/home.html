@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/headFrag :: head"></head>
+<nav th:replace="fragments/navFrag :: nav"></nav>
+    <body>
+
+    <div id="jumbotron" class="container text-center" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="images/sproutling.jpg" class="img-fluid" alt="Image">
+                <div class="carousel-caption">
+                    <h3>Add some green to your day!</h3>
+                    <p>Gardening done right</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="clearfix w-100 d-md-none pb-3">
+
+    <div class="container text-center">
+        <h3>What We Do</h3><br>
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                <p>Current Project</p>
+            </div>
+            <div class="col-sm-4">
+                <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                <p>Project 2</p>
+            </div>
+            <div class="col-sm-4">
+                <div class="well">
+                    <p>Some text..</p>
+                </div>
+                <div class="well">
+                    <p>Some text..</p>
+                </div>
+            </div>
+        </div>
+    </div><br>
+
+
+    <footer th:replace="fragments/footerFrag :: footer"></footer>
+    </body>
+</html>

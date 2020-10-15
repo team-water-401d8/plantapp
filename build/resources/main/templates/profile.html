@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/headFrag :: head"></head>
+<nav th:replace="fragments/navFrag :: nav"></nav>
+<body>
+<h1>Welcome to you profile</h1>
+<!--User personal information displayed-->
+<section th:if="${user}" th:each="user : ${user}">
+    <h1 th:text="${user.getUsername()}"></h1>
+    <!--    <p th:text="${user.firstName}"></p>-->
+    <!--    <p th:text="${user.lastName}"></p>-->
+    <!--    <p th:text="${user.bio}"></p>-->
+</section >
+<!--TODO: Allow the user to modify their information + add avatar/image-->
+<form>
+    <fieldset>Select an avatar</fieldset>
+    <select name="avatar" id="avatarList">
+        <option value="1">one</option>
+        <option value="2">two</option>
+        <option value="3">three</option>
+    </select>
+    <input type="submit" value="submit">
+</form>
+
+<!--Follow and unfollow form-->
+<form th:if="${user.getUsername()} != ${principal.getName()}" action="/follow" method="POST">
+    <input type="hidden" name="id" th:value="${user.id}">
+    <input type="submit" th:value="'Follow ' + ${user.getUsername()}">
+</form>
+<form th:if="${user.getUsername()} != ${principal.getName()} " action="/unfollow" method="POST">
+    <input type="hidden" name="id" th:value="${user.getId()}">
+    <input type="submit" th:value="'Stop following ' + ${user.getUsername()}">
+</form>
+
+<!--====================TODO: Users can view their garden/plants on the profile page====================-->
+<form action="/addGarden" method="POST">
+    <input type="text" name="gardenName" placeholder="garden name">
+    <input type="hidden" name="id" th:value="${user.id}">
+    <input type="submit" value="Create garden">
+</form>
+
+
+<div th:each="garden : ${gardenMess}">
+    <p th:text="${garden.getGardenName()}"></p>
+<!--    <div th:each="plant : ${garden.getplant?}">-->
+<!--        <img th:img="${plant.getTitle()}">-->
+<!--        <img th:img="${plant.getImg()}">-->
+    </div>
+</div>
+
+<!--<div th:each="garden : ${gardenMess}" class="card" style="width: 18rem;">-->
+<!--    <img src="images/download.jpg" class="card-img-top" alt="Image">-->
+<!--    <div class="card-body">-->
+<!--        <h5 th:text="${garden.getGardenName()}" class="card-title">Card title</h5>-->
+<!--        <a href="/garden" class="btn btn-primary">Go to garden</a>-->
+<!--    </div>-->
+<!--    <form action="/removeGarden" method="POST">-->
+<!--        <input type="hidden" name="id" th:value="${user.id}">-->
+<!--        <input type="submit" value="Delete garden">-->
+<!--    </form>-->
+</div>
+
+
+<!--View people currently following-->
+<div th:each="follow : ${user.getFollowing()}">
+    <p>Following: </p><a th:href="'/user/' + ${follow.getUsername()}" th:text="${follow.getUsername()}"></a>
+</div>
+<footer th:replace="fragments/footerFrag :: footer"></footer>
+</body>
+</html>

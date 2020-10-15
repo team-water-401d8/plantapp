@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8", xmlns:th="http://www.thymeleaf.org">
+    <title>Error</title>
+</head>
+<body>
+<H2>You've reached this page because of an error.</H2>
+<table>
+    <tr>
+        <td>Date</td>
+        <td th:text = "${timestamp}"></td>
+    </tr>
+    <tr>
+        <td>Path</td>
+        <td th:text = "${path}"></td>
+    </tr>
+    <tr>
+        <td>Error</td>
+        <td th:text = "${error}"></td>
+    </tr>
+    <tr>
+        <td>Status</td>
+        <td th:text = "${status}"></td>
+    </tr>
+    <tr>
+        <td>Message</td>
+        <td th:text = "${message}"></td>
+    </tr>
+    <tr>
+        <td>Trace</td>
+        <td th:text = "${trace}"></td>
+    </tr>
+</table>
+</body>
+</html>

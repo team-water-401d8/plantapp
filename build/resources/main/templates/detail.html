@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head th:replace="fragments/headFrag :: head"></head>
+</head>
+<nav th:replace="fragments/navFrag :: nav"></nav>
+<body>
+<h1>Details of your plant:</h1>
+
+        <h2 th:text="${plant.commonName}"></h2>
+        <h3 th:text="${plant.scientificName}"></h3>
+        <p th:if="${plant.isPlantEdible}" th:text="Edible"></p>
+<!--        <p th:unless="${plant.isPlantEdible}" th:text="Plant is Not Edible"></p>-->
+        <div id="additional_images">
+            <ul th:if = "${plant.images.flower}">
+                <h3>Flower:</h3>
+                <li th:each = "flower : ${plant.images.flower}"><img th:src="${flower.image_url}" style="max-height: 200px"></li>
+
+            </ul>
+            <ul th:if = "${plant.images.leaf}">
+                <h3>Leaf:</h3>
+                <li th:each = "leaf : ${plant.images.leaf}"><img th:src="${leaf.image_url}" style="max-height: 200px"></li>
+
+            </ul>
+            <ul th:if = "${plant.images.habit}">
+                <h3>Habit:</h3>
+                <li th:each = "habit : ${plant.images.habit}"><img th:src="${habit.image_url}" style="max-height: 200px"></li>
+            </ul>
+
+            <ul th:if = "${plant.images.fruit}">
+                <h3>Fruit:</h3>
+                <li th:each = "fruit : ${plant.images.fruit}"><img th:src="${fruit.image_url}" style="max-height: 200px"></li>
+            </ul>
+
+            <ul th:if = "${plant.images.bark}">
+                <h3>Bark:</h3>
+                <li th:each = "bark : ${plant.images.bark}"><img th:src="${bark.image_url}" style="max-height: 200px"></li>
+            </ul>
+
+            <ul th:if = "${plant.images.other}">
+                <h3>Other:</h3>
+                <li th:each = "other : ${plant.images.other}"><img th:src="${other.image_url}" style="max-height: 200px"></li>
+            </ul>
+        </div>
+
+        <p th:each ="plant : ${plant.ediblePart}"></p>
+
+<footer th:replace="fragments/footerFrag :: footer"></footer>
+</body>
+</html>

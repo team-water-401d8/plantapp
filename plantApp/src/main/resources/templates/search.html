@@ -14,18 +14,14 @@
     </div>
 
 <!--    We should create a button or something, where when someone adds a plant, they are notified it has been added-->
-<!--         Adding plants should utilize a dropdown menu to select which garden to save it to            -->
 
     <ol>
         <li th:each = "plant : ${plants}">
                 <h2 th:text="${plant.common_name}"></h2>
                 <img th:src="${plant.image_url}" alt="" style="max-height: 200px">
             <form th:if="${user}" class="addPlant">
-                <p hidden value="${plant.common_name}" id="commonName"></p>
-                <p hidden value="${plant.image_url}" id="imageName"></p>
-                <input class="common_name" type="hidden" th:value="${plant.common_name}" th:name="common_name">
-                <input class="image_url" type="hidden" th:value="${plant.image_url}" th:name="image_url">
-<!--                <input class="plantIdFromApi" type="hidden" th:value="${plant.plantIdFromApi}" th:name="plantIdFromApi">-->
+                <input hidden type="text" th:value="${plant.common_name}" id="commonName"></input>
+                <input hidden type="text" th:value="${plant.image_url}" id="imageName"></input>
 
 
                 <select name="gardens" id="gardenSelection">

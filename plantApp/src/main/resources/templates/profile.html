@@ -67,7 +67,8 @@
     <p th:text="${garden.getGardenName()}"></p>
     <div th:each="plant : ${garden.plantsInGarden}">
         <h3 th:text="${plant.getPlantCommonName()}"></h3>
-        <img th:src="${plant.getPlantImageUrl()}" style="max-height: 100px" alt="image">
+        <img th:if="${plant.getPlantImageUrl()}" th:src="${plant.getPlantImageUrl()}" style="max-height: 100px" alt="image">
+        <img th:unless="${plant.getPlantImageUrl()}" src="images/planthand.jpeg" style="max-height: 100px" alt="imageBroken">
             <a th:href="'/detail/' +${plant.plantIdFromApi}">More details</a>
     </div>
 

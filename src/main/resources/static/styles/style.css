@@ -132,3 +132,14 @@
     color: #777;
   }
 }
+
+
+/* Search page
+------------------------------- */
+
+.card {
+  display: flex;
+  padding: 2rem;
+  max-width: 25rem;
+  margin: 5rem;
+}

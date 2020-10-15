@@ -16,33 +16,14 @@
 <!--    We should create a button or something, where when someone adds a plant, they are notified it has been added-->
     <!-- carousel with search results -->
 
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100" src="..." alt="First slide">
-            </div>
+<!--            ---- individual card -->
+    <div th:each = "plant : ${plants}" class="card">
+<!--                card img -->
+        <img th:src="${plant.image_url}" alt="" class="card-img-top">
+<!--                card body -->
+        <div class="card-body">
+            <h5 th:text="${plant.common_name}" class="card-title"></h5>
 
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-
-
-    <ol>
-        <li th:each = "plant : ${plants}">
-                <h2 th:text="${plant.common_name}"></h2>
-                <img th:src="${plant.image_url}" alt="" style="max-height: 200px">
             <form th:if="${user}" class="addPlant">
                 <input hidden type="text" th:value="${plant.common_name}" id="commonName"></input>
                 <input hidden type="text" th:value="${plant.image_url}" id="imageName"></input>
@@ -55,8 +36,27 @@
                 <button type="submit" th:id="${plant.id}">add to garden</button>
             </form>
             <input type="submit" class="plant-details" th:id="${plant.id}" value="view details">
-        </li>
-    </ol>
+
+        </div>
+    </div>
+
+
+<!--        <li th:each = "plant : ${plants}">-->
+<!--                <h2 th:text="${plant.common_name}"></h2>-->
+<!--                <img th:src="${plant.image_url}" alt="" style="max-height: 200px">-->
+<!--            <form th:if="${user}" class="addPlant">-->
+<!--                <input hidden type="text" th:value="${plant.common_name}" id="commonName"></input>-->
+<!--                <input hidden type="text" th:value="${plant.image_url}" id="imageName"></input>-->
+
+
+<!--                <select name="gardens" id="gardenSelection">-->
+<!--                    <option value="">&#45;&#45;Please choose an option&#45;&#45;</option>-->
+<!--                    <option th:each="garden : ${gardens}" th:text="${garden.getGardenName()}" th:value="${garden.getId()}"></option>-->
+<!--                </select>-->
+<!--                <button type="submit" th:id="${plant.id}">add to garden</button>-->
+<!--            </form>-->
+<!--            <input type="submit" class="plant-details" th:id="${plant.id}" value="view details">-->
+<!--        </li>-->
 
     <footer th:replace="fragments/footerFrag :: footer"></footer>
 

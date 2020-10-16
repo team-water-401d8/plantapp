@@ -6,7 +6,7 @@
 <hr>
 <hr>
 <hr>
-<!--User personal information displayed-->
+
 
     <div class="jumbotron">
         <!--User personal information displayed-->
@@ -14,25 +14,14 @@
             <h1 th:text="${user.getUsername()}" class="display-3"></h1>
             <p class="lead">User Profile</p>
             <hr class="my-4">
-
-            <form>
-                <fieldset>Select an avatar</fieldset>
-                <select name="avatar" id="avatarList">
-                    <option value="1">one</option>
-                    <option value="2">two</option>
-                    <option value="3">three</option>
-                </select>
-                <input type="submit" value="submit">
-            </form>
-
-            <form th:if="${user.getUsername()} != ${principal.getName()}" action="/profile" method="post">
-                <input type="text" name="bio">
-                <input type="submit" value="add Bio">
-            </form>
-            <!--    <p th:text="${user.firstName}"></p>-->
-            <!--    <p th:text="${user.lastName}"></p>-->
-            <!--    <p th:text="${user.bio}"></p>-->
         </section>
+        <hr>
+
+        <h3>Following: </h3>
+        <div th:each="follow : ${user.getFollowing()}">
+            <a th:href="'/user/' + ${follow.getUsername()}" th:text="${follow.getUsername()}"></a>
+        </div>
+
     </div>
 
     <!--TODO: Allow the user to modify their information + add avatar/image-->
@@ -47,44 +36,34 @@
         <input type="submit" th:value="'Stop following ' + ${user.getUsername()}">
     </form>
 
-<!--====================TODO: Users can view their garden/plants on the profile page====================-->
-<form th:if="${user.getUsername()} == ${principal.getName()}" action="/addGarden" method="POST">
-    <input type="text" name="gardenName" placeholder="garden name">
-    <input type="hidden" name="id" th:value="${user.id}">
-    <input type="submit" value="Create garden">
-</form>
+<!--View people currently following-->
 
+<!--====================TODO: Users can view their garden/plants on the profile page====================-->
+<div style="margin:0 auto;">
+    <h3 style="text-align:center;">Add a Garden to your profile</h3>
+    <form th:if="${user.getUsername()} == ${principal.getName()}" action="/addGarden" method="POST" style="text-align:center;">
+        <input type="text" name="gardenName" placeholder="garden name">
+        <input type="hidden" name="id" th:value="${user.id}">
+        <input type="submit" value="Create garden">
+    </form>
+</div>
 <div class="container">
     <div class="row">
         <div class="card-columns">
             <div th:each="garden : ${gardenMess}" class="card">
                 <h3 th:text="${garden.getGardenName()}" class="card-title" style="text-decoration: underline;"></h3>
                 <div th:each="plant : ${garden.plantsInGarden}">
-                    <img th:if="${plant.getPlantImageUrl()}" th:src="${plant.getPlantImageUrl()}" style="height: 200px; width: 200px;" alt="image">
-                    <p th:text="${plant.getPlantCommonName()}"></p>
-                    <a th:href="'/detail/' +${plant.plantIdFromApi}">More details</a>
-                    <hr>
+                        <img th:if="${plant.getPlantImageUrl()}" th:src="${plant.getPlantImageUrl()}" style="height: 200px; width: 200px;" alt="image">
+                    <div class="card-body" >
+                        <p th:text="${plant.getPlantCommonName()}"></p>
+                        <a class="search-btn btn-secondary btn-md plant-details" th:href="'/detail/' +${plant.plantIdFromApi}">More details</a>
+                        <hr>
+                    </div>
                 </div>
-
-<!--<div th:each="garden : ${gardenMess}" class="card" style="width: 18rem;">-->
-<!--    <img src="images/download.jpg" class="card-img-top" alt="Image">-->
-<!--    <div class="card-body">-->
-<!--        <h5 th:text="${garden.getGardenName()}" class="card-title">Card title</h5>-->
-<!--        <a href="/garden" class="btn btn-primary">Go to garden</a>-->
-<!--    </div>-->
-<!--    <form action="/removeGarden" method="POST">-->
-<!--        <input type="hidden" name="id" th:value="${user.id}">-->
-<!--        <input type="submit" value="Delete garden">-->
-<!--    </form>-->
             </div>
         </div>
     </div>
 </div>
-
-    <!--View people currently following-->
-    <div th:each="follow : ${user.getFollowing()}">
-        <p>Following: </p><a th:href="'/user/' + ${follow.getUsername()}" th:text="${follow.getUsername()}"></a>
-    </div>
 
     <footer th:replace="fragments/footerFrag :: footer"></footer>
 </body>

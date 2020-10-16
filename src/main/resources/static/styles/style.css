@@ -173,6 +173,10 @@
     padding-right: 70px;
 }
 
+.nav-item{
+    padding-right: 40px;
+    padding-left: 40px;
+}
 
 .jumbotron {
   background-color: rgba(124,194,175,0.75);
@@ -194,5 +198,8 @@
   padding: 0.5rem;
 }
 
-
+#footerStuff{
+    padding-left: 165px;
+    padding-right: 165px;
+}
 

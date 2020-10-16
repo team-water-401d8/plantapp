@@ -21,8 +21,8 @@
             <li class="nav-item">
                 <a style="color:green; font-size:20px;" class="nav-link" href="/search">Search</a>
             </li>
-            <li class="nav-item">
-                <a style="color:green; font-size:20px;" th:if="${user} != null" class="nav-link" href="/profile">Profile</a>
+            <li th:if="${user} != null" class="nav-item">
+                <a style="color:green; font-size:20px;" class="nav-link" href="/profile">Profile</a>
             </li>
             <li class="nav-item">
                 <a style="color:green; font-size:20px;" class="nav-link" href="/about">About Us</a>

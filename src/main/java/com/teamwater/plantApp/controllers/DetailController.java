@@ -30,7 +30,7 @@ public class DetailController {
 
     @GetMapping("/detail/{plantIdFromApi}")
     //We should add Principal p to the params in below method if we want user name to persist in page display.
-    public String renderedPlantFromSearch(@PathVariable String plantIdFromApi, Model m) {
+    public String renderedPlantFromSearch(@PathVariable String plantIdFromApi, Model m, Principal principal) {
         String apiUrlDetailQuery = "https://trefle.io/api/v1/species/" + plantIdFromApi + "?token=" + System.getenv("TREFLE_API_KEY");
         PlantDetailDto plant;
         try {
@@ -42,6 +42,7 @@ public class DetailController {
             return "error";
         }
         m.addAttribute("plant", plant);
+        m.addAttribute("user", principal);
         return "detail";
     }
 

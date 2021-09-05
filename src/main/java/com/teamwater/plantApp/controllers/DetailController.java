@@ -19,14 +19,7 @@ import java.security.Principal;
 
 @Controller
 public class DetailController {
-    @Autowired
-    GardenRepository gardenRepository;
 
-    @Autowired
-    PlantRepository plantRepository;
-
-    @Autowired
-    AppUserRepository appUserRepository;
 
     @GetMapping("/detail/{plantIdFromApi}")
     //We should add Principal p to the params in below method if we want user name to persist in page display.

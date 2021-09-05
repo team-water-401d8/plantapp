@@ -8,6 +8,8 @@ import com.teamwater.plantApp.models.plant.Plant;
 import com.teamwater.plantApp.models.plant.PlantRepository;
 import com.teamwater.plantApp.models.user.AppUser;
 import com.teamwater.plantApp.models.user.AppUserRepository;
+import com.teamwater.plantApp.services.garden.GardenService;
+import com.teamwater.plantApp.services.user.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,13 +31,10 @@ import java.util.List;
 @Controller
 public class SearchController {
     @Autowired
-    GardenRepository gardenRepository;
+    GardenService gardenService;
 
     @Autowired
-    PlantRepository plantRepository;
-
-    @Autowired
-    AppUserRepository appUserRepository;
+    AppUserService appUserService ;
 
     //How are we getting info from API?
 
@@ -57,8 +56,8 @@ public class SearchController {
             @RequestParam(required = false) String page
     ){
         if(principal != null){
-            AppUser user = appUserRepository.findByUsername(principal.getName());
-            List<Garden> gardens = gardenRepository.findAllByAppUserId(user.getId());
+            AppUser user = appUserService.getUser(principal.getName());
+            List<Garden> gardens = gardenService.getAllGardensBelongToUser(user.getId());
             m.addAttribute("gardens", gardens);
             m.addAttribute("user", user);
         }

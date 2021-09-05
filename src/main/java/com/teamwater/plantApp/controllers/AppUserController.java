@@ -4,6 +4,8 @@ import com.teamwater.plantApp.models.garden.Garden;
 import com.teamwater.plantApp.models.garden.GardenRepository;
 import com.teamwater.plantApp.models.user.AppUser;
 import com.teamwater.plantApp.models.user.AppUserRepository;
+import com.teamwater.plantApp.services.garden.GardenService;
+import com.teamwater.plantApp.services.user.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,34 +22,35 @@ import java.util.List;
 public class AppUserController {
 
     @Autowired
-    AppUserRepository AppUserRepository;
+
+    AppUserService appUserService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    GardenRepository gardenRepository;
+    GardenService gardenService;
 
     //================================= follow + unfollow =============================================================
     @PostMapping("/follow")
     public RedirectView followUser(Principal principal, Long id) {
-        AppUser userToFollow = AppUserRepository.getOne(id);
-        AppUser follower = AppUserRepository.findByUsername(principal.getName());
+        AppUser userToFollow = appUserService.getUser(id);
+        AppUser follower = appUserService.getUser(principal.getName());
         userToFollow.getFollower(follower);
         follower.follow(userToFollow);
-        AppUserRepository.save(userToFollow);
-        AppUserRepository.save(follower);
+        appUserService.saveUser(userToFollow);
+        appUserService.saveUser(follower);
         System.out.println("following a new user!" + userToFollow.getUsername());
         return new RedirectView("/user/" + userToFollow.getUsername());
     }
     @PostMapping("/unfollow")
     public RedirectView unfollowUser(Principal principal, Long id) {
-        AppUser userToUnfollow = AppUserRepository.getOne(id);
-        AppUser follower = AppUserRepository.findByUsername(principal.getName());
+        AppUser userToUnfollow = appUserService.getUser(id);
+        AppUser follower = appUserService.getUser(principal.getName());
         userToUnfollow.removeFollower(follower);
         follower.removeFollow(userToUnfollow);
-        AppUserRepository.save(userToUnfollow);
-        AppUserRepository.save(follower);
+        appUserService.saveUser(userToUnfollow);
+        appUserService.saveUser(follower);
         System.out.println("You unfollowed a user!" + userToUnfollow.getUsername());
         return new RedirectView("/user/" + userToUnfollow.getUsername());
     }
@@ -85,14 +88,14 @@ public class AppUserController {
         System.out.println("----------- adding a user to the DB ----------");
         String passwordEncode = passwordEncoder.encode(password);
         AppUser newUser = new AppUser(username, passwordEncode);
-        AppUserRepository.save(newUser);
+        appUserService.saveUser(newUser);
         request.login(username,password);
         return new RedirectView("/user/" + username);
     }
     //============================= user profile ===================================================================
     @GetMapping("/user/{username}")
     public String showUserDetails(@PathVariable String username, Model userinfo, Principal principal) {
-        AppUser user = AppUserRepository.findByUsername(username);
+        AppUser user = appUserService.getUser(username);
         if (user == null) {
             userinfo.addAttribute("userDoesNotExist", true);
         }
@@ -101,7 +104,7 @@ public class AppUserController {
 
 
         //        delete and refactor later.
-        List<Garden> gardenMess = gardenRepository.findAllByAppUserId(user.getId());
+        List<Garden> gardenMess = gardenService.getAllGardensBelongToUser(user.getId());
         userinfo.addAttribute("gardenMess", gardenMess);
         System.out.println(gardenMess.size());
 

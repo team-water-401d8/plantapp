@@ -7,6 +7,8 @@ import com.teamwater.plantApp.models.garden.GardenRepository;
 import com.teamwater.plantApp.models.plant.Plant;
 import com.teamwater.plantApp.models.plant.PlantRepository;
 import com.teamwater.plantApp.models.user.AppUserRepository;
+import com.teamwater.plantApp.services.garden.GardenService;
+import com.teamwater.plantApp.services.plant.PlantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
@@ -22,14 +24,11 @@ import java.security.Principal;
 @Controller
 public class PlantController {
 
-    @Autowired
-    PlantRepository plantRepository;
+   @Autowired
+    PlantService plantService ;
 
     @Autowired
-    AppUserRepository AppUserRepository;
-
-    @Autowired
-    GardenRepository gardenRepository;
+    GardenService gardenService;
 
 //  ======== routes =======
     @PostMapping("/addPlantToGarden")
@@ -47,17 +46,17 @@ public class PlantController {
         System.out.println(" the common name is: ====================" + common_name);
         System.out.println(" the image url is: =====================" + image_url);
 
-        Garden garden = gardenRepository.getOne(gardenId);
-        Plant plant = plantRepository.findByPlantIdFromApi(plantIdFromApi);
+        Garden garden = gardenService.getGarden(gardenId);
+        Plant plant = plantService.getPlantFromApi(plantIdFromApi);
         if(plant == null){
             plant = new Plant(common_name, image_url, plantIdFromApi);
-            plantRepository.save(plant);
+            plantService.savePlant(plant);
         }
         garden.addPlant(plant);
         plant.listOfGardens.add(garden);
 
-        gardenRepository.save(garden);
-        plantRepository.save(plant);
+        gardenService.saveGarden(garden);
+        plantService.savePlant(plant);
 
         System.out.println(common_name);
         System.out.println(image_url);
